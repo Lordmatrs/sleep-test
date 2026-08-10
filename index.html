@@ -83,9 +83,6 @@
             z-index: 1;
         }
 
-        /* ============================================================
-           ХЕДЕР
-        ============================================================ */
         .header {
             display: flex;
             align-items: center;
@@ -149,9 +146,6 @@
             white-space: nowrap;
         }
 
-        /* ============================================================
-           ГЕРОЙ
-        ============================================================ */
         .hero {
             text-align: center;
             padding: 30px 20px 20px;
@@ -236,9 +230,6 @@
             box-shadow: 0 8px 24px var(--accent-glow);
         }
 
-        /* ============================================================
-           ТЕСТ
-        ============================================================ */
         #testArea {
             display: none;
             margin-top: 30px;
@@ -386,9 +377,6 @@
             box-shadow: none;
         }
 
-        /* ============================================================
-           РЕЗУЛЬТАТ
-        ============================================================ */
         #resultArea {
             display: none;
             margin-top: 30px;
@@ -518,9 +506,6 @@
             color: #fff;
         }
 
-        /* ============================================================
-           ПОЛНЫЙ РАЗБОР (БЕСПЛАТНО)
-        ============================================================ */
         .full-version-section {
             margin-top: 40px;
             padding: 32px 28px;
@@ -531,13 +516,6 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
             text-align: center;
             box-shadow: var(--shadow-card);
-        }
-
-        .full-version-section .price-free {
-            font-size: 32px;
-            font-weight: 700;
-            color: #fff;
-            margin: 4px 0 8px;
         }
 
         .full-version-section p {
@@ -572,60 +550,6 @@
             font-size: 12px;
         }
 
-        .contact-btn {
-            display: inline-block;
-            color: #fff;
-            border: none;
-            padding: 16px 40px;
-            border-radius: 60px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Inter', sans-serif;
-            text-decoration: none;
-            margin: 4px;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-        }
-
-        .contact-btn-telegram {
-            background: linear-gradient(135deg, #0088cc, #006699);
-            box-shadow: 0 8px 32px rgba(0, 136, 204, 0.35);
-        }
-
-        .contact-btn-telegram:hover {
-            box-shadow: 0 12px 48px rgba(0, 136, 204, 0.45);
-        }
-
-        .contact-btn-max {
-            background: linear-gradient(135deg, #7c6df0, #5a4bd1);
-            box-shadow: 0 8px 32px rgba(124, 109, 240, 0.35);
-        }
-
-        .contact-btn-max:hover {
-            box-shadow: 0 12px 48px rgba(124, 109, 240, 0.45);
-        }
-
-        .contact-note {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-top: 14px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        .contact-note strong {
-            color: var(--text-secondary);
-        }
-
-        /* ============================================================
-           ФОРМА ДЛЯ ОТПРАВКИ НА ПОЧТУ
-        ============================================================ */
         .email-form {
             margin-top: 24px;
             padding-top: 24px;
@@ -701,9 +625,6 @@
             margin-top: 10px;
         }
 
-        /* ============================================================
-           БЛОГ (с раскрытием)
-        ============================================================ */
         .blog-section {
             margin-top: 60px;
             padding-top: 40px;
@@ -793,9 +714,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* ============================================================
-           ФУТЕР
-        ============================================================ */
         .footer {
             margin-top: 50px;
             text-align: center;
@@ -812,9 +730,6 @@
             opacity: 0.7;
         }
 
-        /* ============================================================
-           АДАПТИВ
-        ============================================================ */
         @media (max-width: 640px) {
             .container { padding: 16px 14px 40px; }
             .header { padding: 16px 18px; gap: 14px; }
@@ -845,7 +760,6 @@
             .options label { font-size: 13px; padding: 12px 14px; }
             .test-actions { flex-direction: column; }
             .test-actions .btn { width: 100%; }
-            .contact-btn { display: block; width: 100%; }
         }
     </style>
 </head>
@@ -926,9 +840,9 @@
                 ФОРМА ДЛЯ ОТПРАВКИ НА ПОЧТУ
                 ============================================================ -->
                 <div class="email-form" id="emailForm">
-                    <label for="userContact">📬 Хотите получить разбор на почту? Оставьте контакт:</label>
+                    <label for="userContact">📬 Хотите получить персональный разбор? Оставьте контакт:</label>
                     <input type="text" id="userContact" placeholder="Телефон, Telegram или email" />
-                    <button class="btn-send" id="sendResultBtn">📧 Отправить результат мне на почту</button>
+                    <button class="btn-send" id="sendResultBtn">📧 Отправить результат</button>
                     <div class="form-note" id="formNote">Ваши ответы и рекомендации будут отправлены сомнологу. Обработка в течение 24 часов.</div>
                 </div>
 
@@ -939,12 +853,14 @@
         </section>
 
         <!-- ============================================================
-        ПОЛНЫЙ РАЗБОР (БЕСПЛАТНО)
+        ПЕРСОНАЛЬНЫЙ РАЗБОР СНА
         ============================================================ -->
         <section class="full-version-section" id="fullVersionSection">
             <p style="font-size:14px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">🧠 Персональный разбор сна</p>
-            <div class="price-free">Бесплатно</div>
-            <p>
+            <p style="font-size:20px; font-weight:600; color:#fff; margin:4px 0 8px;">
+                Получите индивидуальные рекомендации
+            </p>
+            <p style="color:var(--text-secondary); font-size:15px; margin-bottom:20px; max-width:500px; margin-left:auto; margin-right:auto;">
                 Я изучу ваши ответы и подготовлю <strong>персональные рекомендации</strong> с учётом вашей ситуации.
             </p>
             <div class="features">
@@ -956,20 +872,11 @@
                 <span>Полное заключение сомнолога</span>
             </div>
 
-            <div style="margin-top:20px; font-size:15px; color:var(--text-secondary);">
-                📬 Оставьте контакт в форме под результатом теста — и я пришлю вам разбор.
+            <div style="margin-top:24px; font-size:17px; color:var(--text-secondary); font-weight:500;">
+                📬 Хотите получить персональный разбор?
             </div>
-
-            <div style="margin-top:20px;">
-                <a href="https://t.me/khashi_1" target="_blank" class="contact-btn contact-btn-telegram">📱 Telegram</a>
-                <a href="https://max.ru/u/f9LHodD0cOJ-jlpDzCqhRtEDv5GYYEHd9aFKyjYtJ5XNyHD5Mhdd4J9HFVA" target="_blank" class="contact-btn contact-btn-max">💬 МАХ</a>
-            </div>
-            <p style="font-size:13px; color:var(--text-muted); margin-top:8px;">
-                Нажмите, чтобы связаться со мной напрямую
-            </p>
-            <div class="contact-note">
-                ⏳ <strong>В течение 24 часов</strong> я проанализирую ваши ответы и отправлю персональный разбор.
-                <br>Каждый случай — индивидуально.
+            <div style="font-size:15px; color:var(--text-muted); margin-top:4px;">
+                Оставьте контакт в форме под результатом теста — и я пришлю вам разбор.
             </div>
         </section>
 
@@ -1460,7 +1367,7 @@
                     throw new Error('Ошибка отправки');
                 }
             } catch (error) {
-                formNote.textContent = '❌ Не удалось отправить. Попробуйте ещё раз или свяжитесь в Telegram/MAX.';
+                formNote.textContent = '❌ Не удалось отправить. Попробуйте ещё раз.';
                 sendResultBtn.textContent = '📧 Попробовать снова';
                 sendResultBtn.disabled = false;
                 console.error('Ошибка отправки:', error);
@@ -1486,7 +1393,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
             // Сбрасываем состояние кнопки
             sendResultBtn.disabled = false;
-            sendResultBtn.textContent = '📧 Отправить результат мне на почту';
+            sendResultBtn.textContent = '📧 Отправить результат';
             formNote.textContent = 'Ваши ответы и рекомендации будут отправлены сомнологу. Обработка в течение 24 часов.';
             userContactInput.value = '';
         }
