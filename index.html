@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тест сна | Сомнолог-консультант Михаил Фролов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,600;1,700&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================================
+           БАЗОВЫЕ СТИЛИ
+        ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0b0f1a;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --bg-card-hover: rgba(255, 255, 255, 0.08);
+            --text-primary: #f0f4ff;
+            --text-secondary: #b8c8e8;
+            --text-muted: #7a8aa8;
+            --accent: #7c6df0;
+            --accent-glow: rgba(124, 109, 240, 0.35);
+            --accent-light: #a69bff;
+            --gradient-main: linear-gradient(135deg, #0b0f1a 0%, #1a1040 50%, #0d1b2a 100%);
+            --shadow-card: 0 16px 48px rgba(0, 0, 0, 0.6);
+            --radius: 28px;
+            --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            background-image: var(--gradient-main);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite alternate;
+            opacity: 0.3;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.15; transform: scale(0.8); }
+            100% { opacity: 0.9; transform: scale(1.2); }
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 24px 20px 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================================
+           ХЕДЕР
+        ============================================================ */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 20px 28px;
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-card);
+            flex-wrap: wrap;
+        }
+
+        .avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #4a3db8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .header-info {
+            flex: 1;
+        }
+
+        .header-info h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: linear-gradient(to right, #fff, var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .badge {
+            background: var(--accent);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #fff;
+            box-shadow: 0 0 24px var(--accent-glow);
+            white-space: nowrap;
+        }
+
+        /* ============================================================
+           ГЕРОЙ
+        ============================================================ */
+        .hero {
+            text-align: center;
+            padding: 30px 20px 20px;
+        }
+
+        .hero-icon {
+            font-size: 58px;
+            margin-bottom: 12px;
+            display: block;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, #c8bfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 16px auto 28px;
+            line-height: 1.7;
+        }
+
+        .hero .sub {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: -8px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), #5a4bd1);
+            color: #fff;
+            border: none;
+            padding: 16px 48px;
+            border-radius: 60px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 32px var(--accent-glow);
+            letter-spacing: 0.3px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 48px var(--accent-glow);
+            background: linear-gradient(135deg, #8f82f5, #6a5bdc);
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: none;
+            color: var(--text-secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-card);
+            border-color: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        /* ============================================================
+           ТЕСТ
+        ============================================================ */
+        #testArea {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .progress-wrap {
+            background: rgba(255, 255, 255, 0.06);
+            height: 6px;
+            border-radius: 20px;
+            margin-bottom: 6px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 20px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .step-counter {
+            text-align: right;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .question-block {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            padding: 32px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            animation: fadeSlide 0.4s ease;
+        }
+
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-text {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 16px 22px;
+            border-radius: 16px;
+            border: 1.5px solid rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .options label:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .options input[type="radio"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            flex-shrink: 0;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .options input[type="radio"]:checked {
+            border-color: var(--accent);
+            background: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .options input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .options label:has(input:checked) {
+            border-color: var(--accent);
+            background: rgba(124, 109, 240, 0.12);
+        }
+
+        .test-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 28px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .test-actions .btn {
+            padding: 14px 40px;
+            font-size: 16px;
+            min-width: 140px;
+        }
+
+        .btn-prev {
+            background: transparent;
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+            color: var(--text-muted);
+        }
+
+        .btn-prev:hover {
+            border-color: var(--text-secondary);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.04);
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* ============================================================
+           РЕЗУЛЬТАТ
+        ============================================================ */
+        #resultArea {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .result-box {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            padding: 40px 34px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: var(--shadow-card);
+            animation: fadeSlide 0.6s ease;
+            text-align: center;
+        }
+
+        .result-emoji {
+            font-size: 64px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .result-tag {
+            display: inline-block;
+            background: var(--accent);
+            padding: 6px 24px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            box-shadow: 0 0 24px var(--accent-glow);
+        }
+
+        .result-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .result-desc {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 640px;
+            margin: 0 auto 16px;
+        }
+
+        .result-score {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin: 8px 0 20px;
+            letter-spacing: -1px;
+        }
+
+        .result-score span {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .result-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .result-actions .btn {
+            padding: 14px 36px;
+            font-size: 15px;
+        }
+
+        .result-detail {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .result-detail h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .result-detail ul {
+            list-style: none;
+            text-align: left;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .result-detail ul li {
+            padding: 6px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .result-detail ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 4px;
+            color: var(--accent-light);
+        }
+
+        .result-from-lecture {
+            margin-top: 20px;
+            padding: 16px 20px;
+            background: rgba(124, 109, 240, 0.08);
+            border-radius: 16px;
+            border-left: 3px solid var(--accent);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        .result-from-lecture strong {
+            color: #fff;
+        }
+
+        /* ============================================================
+           ПОЛУЧИТЬ ПОЛНЫЙ РАЗБОР
+        ============================================================ */
+        .full-version-section {
+            margin-top: 40px;
+            padding: 32px 28px;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+            box-shadow: var(--shadow-card);
+        }
+
+        .full-version-section .price {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            margin: 4px 0 8px;
+        }
+
+        .full-version-section .price small {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .full-version-section p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .full-version-section .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 20px;
+            text-align: left;
+            max-width: 540px;
+            margin: 0 auto 24px;
+        }
+
+        .full-version-section .features span {
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .full-version-section .features span::before {
+            content: '✦';
+            color: var(--accent-light);
+            font-size: 12px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            color: #fff;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 60px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            margin: 4px;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .contact-btn-telegram {
+            background: linear-gradient(135deg, #0088cc, #006699);
+            box-shadow: 0 8px 32px rgba(0, 136, 204, 0.35);
+        }
+
+        .contact-btn-telegram:hover {
+            box-shadow: 0 12px 48px rgba(0, 136, 204, 0.45);
+        }
+
+        .contact-btn-max {
+            background: linear-gradient(135deg, #7c6df0, #5a4bd1);
+            box-shadow: 0 8px 32px rgba(124, 109, 240, 0.35);
+        }
+
+        .contact-btn-max:hover {
+            box-shadow: 0 12px 48px rgba(124, 109, 240, 0.45);
+        }
+
+        .contact-note {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 14px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .contact-note strong {
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+           БЛОГ (с раскрытием)
+        ============================================================ */
+        .blog-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .blog-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .blog-section .subhead {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 28px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .blog-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 22px 24px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .blog-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .blog-card .preview {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .blog-card .full-text {
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .blog-card .full-text p {
+            margin-bottom: 10px;
+        }
+
+        .blog-card .full-text.show {
+            display: block;
+        }
+
+        .blog-card .read-more {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--accent-light);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .blog-card .date {
+            display: block;
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.3px;
+        }
+
+        /* ============================================================
+           ФУТЕР
+        ============================================================ */
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 30px;
+        }
+
+        .footer .diploma {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+
+        /* ============================================================
+           АДАПТИВ
+        ============================================================ */
+        @media (max-width: 640px) {
+            .container { padding: 16px 14px 40px; }
+            .header { padding: 16px 18px; gap: 14px; }
+            .avatar { width: 50px; height: 50px; font-size: 20px; }
+            .header-info h1 { font-size: 17px; }
+            .header-info p { font-size: 12px; }
+            .badge { font-size: 10px; padding: 4px 14px; }
+            .hero h2 { font-size: 28px; }
+            .hero p { font-size: 16px; }
+            .question-block { padding: 24px 18px; }
+            .question-text { font-size: 18px; }
+            .options label { padding: 14px 16px; font-size: 14px; }
+            .test-actions .btn { padding: 12px 24px; font-size: 14px; min-width: 100px; }
+            .result-box { padding: 28px 18px; }
+            .result-title { font-size: 26px; }
+            .result-desc { font-size: 16px; }
+            .result-score { font-size: 38px; }
+            .full-version-section .price { font-size: 34px; }
+            .full-version-section .features { grid-template-columns: 1fr; gap: 6px; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .result-actions { flex-direction: column; }
+            .result-actions .btn { width: 100%; }
+        }
+
+        @media (max-width: 400px) {
+            .hero h2 { font-size: 22px; }
+            .header-info h1 { font-size: 15px; }
+            .question-text { font-size: 16px; }
+            .options label { font-size: 13px; padding: 12px 14px; }
+            .test-actions { flex-direction: column; }
+            .test-actions .btn { width: 100%; }
+            .contact-btn { display: block; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    ЗВЁЗДНЫЙ ФОН
+    ============================================================ -->
+    <div class="stars" id="stars"></div>
+
+    <!-- ============================================================
+    ОСНОВНОЙ КОНТЕЙНЕР
+    ============================================================ -->
+    <div class="container">
+
+        <!-- ============================================================
+        ХЕДЕР
+        ============================================================ -->
+        <header class="header">
+            <div class="avatar">М</div>
+            <div class="header-info">
+                <h1>Михаил Фролов</h1>
+                <p>Сомнолог-консультант</p>
+            </div>
+            <span class="badge">🌙 Эксперт</span>
+        </header>
+
+        <!-- ============================================================
+        ГЕРОЙ
+        ============================================================ -->
+        <section class="hero" id="heroSection">
+            <span class="hero-icon">🌙</span>
+            <h2>Тест вашего сна</h2>
+            <p>
+                Ответьте на 10 вопросов — и получите персонализированный разбор
+                вашего сна. Без очередей. Без консультаций. <strong>Результат — сразу.</strong>
+            </p>
+            <p class="sub">🧠 Основано на Питтсбургском опроснике (PSQI) и шкале Эпворта</p>
+            <button class="btn" id="startTestBtn">✨ Начать тест</button>
+        </section>
+
+        <!-- ============================================================
+        ТЕСТ
+        ============================================================ -->
+        <section id="testArea">
+            <div class="progress-wrap">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="step-counter" id="stepCounter">1 / 10</div>
+
+            <div id="questionContainer">
+                <!-- Вопросы рендерятся через JS -->
+            </div>
+
+            <div class="test-actions">
+                <button class="btn btn-prev" id="prevBtn" style="visibility:hidden;">← Назад</button>
+                <button class="btn" id="nextBtn">Далее →</button>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        РЕЗУЛЬТАТ
+        ============================================================ -->
+        <section id="resultArea">
+            <div class="result-box">
+                <span class="result-emoji" id="resultEmoji">💚</span>
+                <span class="result-tag" id="resultTag">Отличный сон</span>
+                <div class="result-score" id="resultScore">0 <span>/ 30</span></div>
+                <h3 class="result-title" id="resultTitle">Ваш сон в норме!</h3>
+                <div class="result-desc" id="resultDesc">
+                    Текст рекомендации появится здесь.
+                </div>
+                <div class="result-detail" id="resultDetail">
+                    <!-- Детали подгружаются из JS -->
+                </div>
+                <div class="result-actions">
+                    <button class="btn btn-outline" id="retestBtn">↻ Пройти заново</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        ПОЛУЧИТЬ ПОЛНЫЙ РАЗБОР (80 ₽)
+        ============================================================ -->
+        <section class="full-version-section" id="fullVersionSection">
+            <p style="font-size:14px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">💎 Полный разбор сна</p>
+            <div class="price">80 ₽ <small>за персонализированное заключение</small></div>
+            <p>
+                Я изучу ваши ответы и подготовлю <strong>персональный разбор</strong> с учётом вашей ситуации.
+            </p>
+            <div class="features">
+                <span>Разбор по каждому из 10 вопросов</span>
+                <span>Оценка по 4 ключевым параметрам (инсомния, апноэ, циркадные ритмы, психоэмоциональное состояние)</span>
+                <span>Персональный план действий на 14 дней</span>
+                <span>Техники релаксации (дыхание, ПМР, визуализация)</span>
+                <span>Полное заключение сомнолога</span>
+                <span>Рекомендации по питанию и режиму</span>
+            </div>
+            <div>
+                <a href="https://t.me/MAX" target="_blank" class="contact-btn contact-btn-telegram">📱 Telegram</a>
+                <a href="tel:+79871881578" class="contact-btn contact-btn-max">💬 МАХ</a>
+            </div>
+            <p style="font-size:13px; color:var(--text-muted); margin-top:8px;">
+                Нажмите, чтобы связаться со мной напрямую
+            </p>
+            <div class="contact-note">
+                ⏳ <strong>В течение 8 часов</strong> после оплаты я проанализирую ваши ответы и отправлю персональный разбор.
+                <br>Каждый случай — индивидуально.
+            </div>
+        </section>
+
+        <!-- ============================================================
+        БЛОГ (с раскрытием)
+        ============================================================ -->
+        <section class="blog-section">
+            <h3>📖 Блог сомнолога</h3>
+            <p class="subhead">Статьи из моей авторской методики</p>
+            <div class="blog-grid">
+                <div class="blog-card" onclick="toggleBlog(this)">
+                    <h4>Гигиена сна: 10 правил</h4>
+                    <div class="preview">Как настроить режим, спальню и привычки для глубокого отдыха...</div>
+                    <div class="full-text">
+                        <p><strong>1. Регулярность.</strong> Ложитесь и вставайте в одно и то же время каждый день, включая выходные. Это стабилизирует циркадные ритмы.</p>
+                        <p><strong>2. Температура.</strong> Оптимальная температура в спальне — 18–20°C. Прохлада помогает быстрее заснуть.</p>
+                        <p><strong>3. Тишина.</strong> Используйте беруши или белый шум, если вокруг шумно.</p>
+                        <p><strong>4. Темнота.</strong> Плотные шторы или маска для сна помогут вырабатывать мелатонин.</p>
+                        <p><strong>5. Гаджеты.</strong> За 1–2 часа до сна отложите телефон и компьютер. Синий свет подавляет мелатонин.</p>
+                        <p><strong>6. Кофеин.</strong> Избегайте кофеина после 16:00. Он может нарушать засыпание.</p>
+                        <p><strong>7. Алкоголь.</strong> Не пейте алкоголь за 3–4 часа до сна — он разрушает структуру сна.</p>
+                        <p><strong>8. Ужин.</strong> Ужинайте за 2–3 часа до сна, выбирайте лёгкую пищу.</p>
+                        <p><strong>9. Физическая активность.</strong> Регулярные прогулки и спорт улучшают сон, но не позже чем за 3 часа до сна.</p>
+                        <p><strong>10. Ритуал.</strong> Создайте вечерний ритуал: тёплая ванна, чтение, медитация — сигнал для организма, что пора спать.</p>
+                        <p style="margin-top:12px; color:var(--accent-light);">Из моей авторской методики по гигиене сна.</p>
+                    </div>
+                    <span class="read-more">📖 Читать полностью →</span>
+                    <span class="date">10 августа 2026</span>
+                </div>
+
+                <div class="blog-card" onclick="toggleBlog(this)">
+                    <h4>Почему мы видим кошмары</h4>
+                    <div class="preview">Разбираем причины ночных страхов и способы их устранения...</div>
+                    <div class="full-text">
+                        <p><strong>Причины кошмаров:</strong></p>
+                        <p>• Стресс и тревога — самые частые триггеры.</p>
+                        <p>• Психотравмы (ПТСР).</p>
+                        <p>• Нерегулярный сон и недосыпание.</p>
+                        <p>• Приём некоторых лекарств.</p>
+                        <p><strong>Что делать:</strong></p>
+                        <p>• Ведите дневник сновидений — записывайте сны сразу после пробуждения.</p>
+                        <p>• Практикуйте технику «переписывания сценария» — представьте другой финал кошмара днём.</p>
+                        <p>• Снижайте уровень стресса перед сном (медитация, дыхание).</p>
+                        <p>• Если кошмары повторяются более 1 раза в неделю — обратитесь к психотерапевту.</p>
+                        <p style="margin-top:12px; color:var(--accent-light);">Из моей авторской методики по работе с парасомниями.</p>
+                    </div>
+                    <span class="read-more">📖 Читать полностью →</span>
+                    <span class="date">5 августа 2026</span>
+                </div>
+
+                <div class="blog-card" onclick="toggleBlog(this)">
+                    <h4>Стресс и бессонница</h4>
+                    <div class="preview">Как разорвать порочный круг и вернуть здоровый сон...</div>
+                    <div class="full-text">
+                        <p><strong>Как стресс влияет на сон:</strong></p>
+                        <p>• Повышает уровень кортизола — гормона стресса.</p>
+                        <p>• Увеличивает время засыпания.</p>
+                        <p>• Уменьшает фазу глубокого сна.</p>
+                        <p>• Вызывает частые ночные пробуждения.</p>
+                        <p><strong>Что делать:</strong></p>
+                        <p>• Практикуйте дыхательную технику «4-7-8» перед сном.</p>
+                        <p>• Ведите дневник тревог — записывайте все беспокоящие мысли за 2 часа до сна.</p>
+                        <p>• Используйте прогрессивную мышечную релаксацию.</p>
+                        <p>• Ограничьте новостной поток за 1–2 часа до сна.</p>
+                        <p>• Если бессонница длится более 3 недель — обратитесь к специалисту.</p>
+                        <p style="margin-top:12px; color:var(--accent-light);">Из моей авторской методики по управлению стрессом и сном.</p>
+                    </div>
+                    <span class="read-more">📖 Читать полностью →</span>
+                    <span class="date">28 июля 2026</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        ФУТЕР (с дипломом внизу)
+        ============================================================ -->
+        <div class="footer">
+            <p>© 2026 Михаил Фролов · Сомнолог-консультант</p>
+            <div class="diploma">Диплом № 2026/04/011 · Профессиональная переподготовка по программе «Сомнолог-консультант»</div>
+        </div>
+
+    </div>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. ЗВЁЗДНЫЙ ФОН
+        // ============================================================
+        (function createStars() {
+            const container = document.getElementById('stars');
+            const count = 120;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = 1 + Math.random() * 3;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (2 + Math.random() * 4) + 's');
+                star.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(star);
+            }
+        })();
+
+        // ============================================================
+        // 2. БЛОГ — РАСКРЫТИЕ СТАТЕЙ
+        // ============================================================
+        function toggleBlog(card) {
+            const fullText = card.querySelector('.full-text');
+            const readMore = card.querySelector('.read-more');
+
+            if (fullText.classList.contains('show')) {
+                fullText.classList.remove('show');
+                readMore.textContent = '📖 Читать полностью →';
+            } else {
+                // Закрываем все остальные
+                document.querySelectorAll('.blog-card .full-text').forEach(el => {
+                    el.classList.remove('show');
+                });
+                document.querySelectorAll('.blog-card .read-more').forEach(el => {
+                    el.textContent = '📖 Читать полностью →';
+                });
+
+                fullText.classList.add('show');
+                readMore.textContent = '📕 Свернуть';
+            }
+        }
+
+        // ============================================================
+        // 3. ДАННЫЕ ТЕСТА
+        // ============================================================
+        const questions = [{
+            id: 1,
+            text: 'Как часто вы просыпаетесь в середине ночи или под утро?',
+            options: [
+                { label: 'Ни разу', value: 0 },
+                { label: 'Менее 1 раза в неделю', value: 1 },
+                { label: '1–2 раза в неделю', value: 2 },
+                { label: '3 и более раз в неделю', value: 3 },
+            ]
+        }, {
+            id: 2,
+            text: 'Сколько времени вам обычно требуется, чтобы уснуть?',
+            options: [
+                { label: 'Менее 15 минут', value: 0 },
+                { label: '15–30 минут', value: 1 },
+                { label: '30–60 минут', value: 2 },
+                { label: 'Более 60 минут', value: 3 },
+            ]
+        }, {
+            id: 3,
+            text: 'Как бы вы оценили качество своего сна в целом?',
+            options: [
+                { label: 'Очень хорошее', value: 0 },
+                { label: 'Хорошее', value: 1 },
+                { label: 'Плохое', value: 2 },
+                { label: 'Очень плохое', value: 3 },
+            ]
+        }, {
+            id: 4,
+            text: 'Как часто вы принимаете лекарства для сна?',
+            options: [
+                { label: 'Ни разу', value: 0 },
+                { label: 'Менее 1 раза в неделю', value: 1 },
+                { label: '1–2 раза в неделю', value: 2 },
+                { label: '3 и более раз в неделю', value: 3 },
+            ]
+        }, {
+            id: 5,
+            text: 'Какова вероятность, что вы задремлете, сидя и читая?',
+            options: [
+                { label: 'Никогда', value: 0 },
+                { label: 'Малая вероятность', value: 1 },
+                { label: 'Вероятно', value: 2 },
+                { label: 'Большая вероятность', value: 3 },
+            ]
+        }, {
+            id: 6,
+            text: 'Какова вероятность, что вы задремлете, смотря телевизор?',
+            options: [
+                { label: 'Никогда', value: 0 },
+                { label: 'Малая вероятность', value: 1 },
+                { label: 'Вероятно', value: 2 },
+                { label: 'Большая вероятность', value: 3 },
+            ]
+        }, {
+            id: 7,
+            text: 'Как часто вы чувствуете, что холодно или жарко во время сна?',
+            options: [
+                { label: 'Ни разу', value: 0 },
+                { label: 'Менее 1 раза в неделю', value: 1 },
+                { label: '1–2 раза в неделю', value: 2 },
+                { label: '3 и более раз в неделю', value: 3 },
+            ]
+        }, {
+            id: 8,
+            text: 'Снятся ли вам кошмары или тревожные сны?',
+            options: [
+                { label: 'Никогда', value: 0 },
+                { label: 'Редко', value: 1 },
+                { label: 'Иногда', value: 2 },
+                { label: 'Часто', value: 3 },
+            ]
+        }, {
+            id: 9,
+            text: 'Как часто вы чувствуете усталость или разбитость после сна?',
+            options: [
+                { label: 'Никогда', value: 0 },
+                { label: 'Редко', value: 1 },
+                { label: 'Иногда', value: 2 },
+                { label: 'Часто', value: 3 },
+            ]
+        }, {
+            id: 10,
+            text: 'Как часто дневная сонливость мешает вашей повседневной деятельности?',
+            options: [
+                { label: 'Никогда', value: 0 },
+                { label: 'Редко', value: 1 },
+                { label: 'Иногда', value: 2 },
+                { label: 'Часто', value: 3 },
+            ]
+        }];
+
+        // ============================================================
+        // 4. РЕЗУЛЬТАТЫ
+        // ============================================================
+        const results = [{
+            min: 0,
+            max: 5,
+            emoji: '💚',
+            tag: 'Отличный сон',
+            title: 'Ваш сон в норме!',
+            desc: 'Вы хорошо спите и восстанавливаетесь. Ваш организм получает достаточно отдыха для полноценной работы всех систем.',
+            detail: [
+                'Поддерживайте режим: ложитесь и вставайте в одно и то же время.',
+                'Избегайте кофеина после 16:00 — он может нарушать засыпание.',
+                'Проветривайте спальню перед сном, создавайте прохладу (18–20°C).',
+                'Практикуйте 15 минут тишины без гаджетов перед сном.',
+            ],
+            from_lecture: '«Гигиена сна — это фундамент здоровья. Даже при отличном сне важно сохранять привычки, чтобы стресс или сезонные изменения не нарушили ваш отдых. Сон — это не роскошь, а базовая потребность организма, как дыхание.»'
+        }, {
+            min: 6,
+            max: 12,
+            emoji: '💛',
+            tag: 'Лёгкие нарушения',
+            title: 'Есть над чем поработать',
+            desc: 'У вас небольшие проблемы со сном. Они часто связаны со стрессом, поздними ужинами или гаджетами перед сном.',
+            detail: [
+                'За 2 часа до сна отложите телефон, планшет и компьютер.',
+                'Ужинайте за 3 часа до сна, выбирайте лёгкую пищу (овощи, рыба, творог).',
+                'Попробуйте технику «4-7-8» перед сном: вдох на 4 счёта, задержка на 7, выдох на 8 — повторите 5 раз.',
+                'Ведите дневник сна 7 дней: записывайте время засыпания, пробуждения, что ели и пили.',
+                'Исключите алкоголь за 4 часа до сна — он нарушает структуру сна.',
+            ],
+            from_lecture: '«Нарушения сна на ранней стадии корректируются поведением. Когнитивно-поведенческая терапия сна начинается с осознания своих привычек. Иногда достаточно 2 недель, чтобы восстановить нормальный сон.»'
+        }, {
+            min: 13,
+            max: 18,
+            emoji: '🧡',
+            tag: 'Умеренные нарушения',
+            title: 'Сон требует внимания',
+            desc: 'Ваш сон нарушен: частые пробуждения, дневная сонливость и усталость — сигналы, что организм не восстанавливается.',
+            detail: [
+                'Введите строгий режим сна — 7–8 часов, без исключений в выходные.',
+                'Исключите алкоголь полностью за 4 часа до сна.',
+                'Включите в рацион магний и витамин D (орехи, зелень, рыба, яйца).',
+                'Ежедневные прогулки — минимум 20–30 минут на свежем воздухе.',
+                'Практикуйте прогрессивную мышечную релаксацию перед сном (поочерёдное напряжение и расслабление всех групп мышц).',
+                'Если через 2 недели улучшений нет — вам нужна более глубокая диагностика.',
+            ],
+            from_lecture: '«Стресс и тревога — главные враги сна. Работа с телом через релаксацию даёт результат быстрее, чем попытки "просто уснуть". Сон — это зеркало вашего психоэмоционального состояния.»'
+        }, {
+            min: 19,
+            max: 30,
+            emoji: '❤️',
+            tag: 'Выраженные нарушения',
+            title: 'Не откладывайте!',
+            desc: 'Ваш сон серьёзно нарушен. Это влияет на иммунитет, память, настроение и даже сердечно-сосудистую систему.',
+            detail: [
+                'Обратитесь к терапевту для исключения соматических причин (анемия, гормональные сбои).',
+                'Начните вести дневник сна с фиксацией всех пробуждений и самочувствия.',
+                'Полисомнография — если есть подозрение на апноэ (храп, остановки дыхания).',
+                'Психотерапевт или психиатр — если нарушения сна связаны с тревогой, депрессией или ПТСР (это не слабость, это работа с химией мозга).',
+                'Нарколог — если есть зависимость от алкоголя, снотворных или других веществ.',
+                'Не ждите — чем раньше начнёте, тем быстрее вернёте здоровый сон.',
+            ],
+            from_lecture: '«Хроническая бессонница — это не просто "не могу уснуть". Это системный сбой, который требует комплексного подхода: поведение, питание, тело, а иногда и медикаментозная поддержка. Чем раньше вы начнёте, тем быстрее вернёте здоровый сон. Ваше здоровье — в ваших руках.»'
+        }];
+
+        // ============================================================
+        // 5. ЛОГИКА ТЕСТА
+        // ============================================================
+        let currentStep = 0;
+        let answers = [];
+
+        const testArea = document.getElementById('testArea');
+        const resultArea = document.getElementById('resultArea');
+        const fullVersionSection = document.getElementById('fullVersionSection');
+        const questionContainer = document.getElementById('questionContainer');
+        const progressBar = document.getElementById('progressBar');
+        const stepCounter = document.getElementById('stepCounter');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const startBtn = document.getElementById('startTestBtn');
+        const retestBtn = document.getElementById('retestBtn');
+        const heroSection = document.getElementById('heroSection');
+
+        function showTest() {
+            heroSection.style.display = 'none';
+            testArea.style.display = 'block';
+            resultArea.style.display = 'none';
+            fullVersionSection.style.display = 'block';
+            currentStep = 0;
+            answers = [];
+            renderQuestion(0);
+        }
+
+        function renderQuestion(index) {
+            const q = questions[index];
+            if (!q) return;
+
+            let html = `<div class="question-block">
+                            <div class="question-text">${q.text}</div>
+                            <div class="options">`;
+
+            q.options.forEach((opt, i) => {
+                const checked = answers[index] === i ? 'checked' : '';
+                html += `
+                            <label>
+                                <input type="radio" name="q${q.id}" value="${i}" ${checked} />
+                                ${opt.label}
+                            </label>
+                        `;
+            });
+
+            html += `</div></div>`;
+            questionContainer.innerHTML = html;
+
+            const progress = ((index + 1) / questions.length) * 100;
+            progressBar.style.width = progress + '%';
+            stepCounter.textContent = `${index + 1} / ${questions.length}`;
+
+            prevBtn.style.visibility = index === 0 ? 'hidden' : 'visible';
+
+            if (index === questions.length - 1) {
+                nextBtn.textContent = '📊 Узнать результат';
+            } else {
+                nextBtn.textContent = 'Далее →';
+            }
+
+            const radios = document.querySelectorAll(`input[name="q${q.id}"]`);
+            radios.forEach((r, idx) => {
+                r.addEventListener('change', () => {
+                    answers[index] = idx;
+                });
+            });
+
+            if (answers[index] !== undefined) {
+                const checkedRadio = document.querySelector(`input[name="q${q.id}"][value="${answers[index]}"]`);
+                if (checkedRadio) checkedRadio.checked = true;
+            }
+
+            questionContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function handleNext() {
+            const q = questions[currentStep];
+            const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+
+            if (!selected) {
+                const block = document.querySelector('.question-block');
+                block.style.borderColor = '#ff6b6b';
+                setTimeout(() => block.style.borderColor = '', 1000);
+                return;
+            }
+
+            const value = parseInt(selected.value);
+            answers[currentStep] = value;
+
+            if (currentStep === questions.length - 1) {
+                showResult();
+            } else {
+                currentStep++;
+                renderQuestion(currentStep);
+            }
+        }
+
+        function handlePrev() {
+            if (currentStep > 0) {
+                currentStep--;
+                renderQuestion(currentStep);
+            }
+        }
+
+        function showResult() {
+            const total = answers.reduce((sum, val) => sum + val, 0);
+
+            let matched = results.find(r => total >= r.min && total <= r.max);
+            if (!matched) matched = results[results.length - 1];
+
+            document.getElementById('resultEmoji').textContent = matched.emoji;
+            document.getElementById('resultTag').textContent = matched.tag;
+            document.getElementById('resultTitle').textContent = matched.title;
+            document.getElementById('resultDesc').textContent = matched.desc;
+            document.getElementById('resultScore').innerHTML = `${total} <span>/ 30</span>`;
+
+            let detailHtml = `<h4>📋 Что делать прямо сейчас</h4><ul>`;
+            matched.detail.forEach(item => {
+                detailHtml += `<li>${item}</li>`;
+            });
+            detailHtml += `</ul>`;
+            detailHtml += `<div class="result-from-lecture"><strong>📖 Из моей авторской методики:</strong> ${matched.from_lecture}</div>`;
+            document.getElementById('resultDetail').innerHTML = detailHtml;
+
+            testArea.style.display = 'none';
+            resultArea.style.display = 'block';
+            fullVersionSection.style.display = 'block';
+
+            resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function resetTest() {
+            currentStep = 0;
+            answers = [];
+            resultArea.style.display = 'none';
+            testArea.style.display = 'none';
+            fullVersionSection.style.display = 'block';
+            heroSection.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        // 6. СОБЫТИЯ
+        // ============================================================
+        startBtn.addEventListener('click', showTest);
+        nextBtn.addEventListener('click', handleNext);
+        prevBtn.addEventListener('click', handlePrev);
+        retestBtn.addEventListener('click', resetTest);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && testArea.style.display === 'block') {
+                handleNext();
+            }
+        });
+
+        testArea.style.display = 'none';
+        resultArea.style.display = 'none';
+        fullVersionSection.style.display = 'block';
+    </script>
+
+</body>
+</html>
