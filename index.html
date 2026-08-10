@@ -83,6 +83,9 @@
             z-index: 1;
         }
 
+        /* ============================================================
+           ХЕДЕР
+        ============================================================ */
         .header {
             display: flex;
             align-items: center;
@@ -146,6 +149,9 @@
             white-space: nowrap;
         }
 
+        /* ============================================================
+           ГЕРОЙ
+        ============================================================ */
         .hero {
             text-align: center;
             padding: 30px 20px 20px;
@@ -230,6 +236,9 @@
             box-shadow: 0 8px 24px var(--accent-glow);
         }
 
+        /* ============================================================
+           ТЕСТ
+        ============================================================ */
         #testArea {
             display: none;
             margin-top: 30px;
@@ -377,6 +386,9 @@
             box-shadow: none;
         }
 
+        /* ============================================================
+           РЕЗУЛЬТАТ
+        ============================================================ */
         #resultArea {
             display: none;
             margin-top: 30px;
@@ -506,6 +518,9 @@
             color: #fff;
         }
 
+        /* ============================================================
+           ПОЛНЫЙ РАЗБОР (БЕСПЛАТНО)
+        ============================================================ */
         .full-version-section {
             margin-top: 40px;
             padding: 32px 28px;
@@ -518,17 +533,11 @@
             box-shadow: var(--shadow-card);
         }
 
-        .full-version-section .price {
-            font-size: 42px;
+        .full-version-section .price-free {
+            font-size: 32px;
             font-weight: 700;
             color: #fff;
             margin: 4px 0 8px;
-        }
-
-        .full-version-section .price small {
-            font-size: 18px;
-            font-weight: 400;
-            color: var(--text-muted);
         }
 
         .full-version-section p {
@@ -614,6 +623,87 @@
             color: var(--text-secondary);
         }
 
+        /* ============================================================
+           ФОРМА ДЛЯ ОТПРАВКИ НА ПОЧТУ
+        ============================================================ */
+        .email-form {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: left;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .email-form label {
+            display: block;
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            text-align: center;
+        }
+
+        .email-form input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .email-form input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .email-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .email-form .btn-send {
+            margin-top: 14px;
+            width: 100%;
+            display: inline-block;
+            background: linear-gradient(135deg, #00c9a7, #00b894);
+            color: #fff;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 60px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 32px rgba(0, 201, 167, 0.35);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .email-form .btn-send:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 48px rgba(0, 201, 167, 0.45);
+        }
+
+        .email-form .btn-send:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .email-form .form-note {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* ============================================================
+           БЛОГ (с раскрытием)
+        ============================================================ */
         .blog-section {
             margin-top: 60px;
             padding-top: 40px;
@@ -703,6 +793,9 @@
             letter-spacing: 0.3px;
         }
 
+        /* ============================================================
+           ФУТЕР
+        ============================================================ */
         .footer {
             margin-top: 50px;
             text-align: center;
@@ -719,6 +812,9 @@
             opacity: 0.7;
         }
 
+        /* ============================================================
+           АДАПТИВ
+        ============================================================ */
         @media (max-width: 640px) {
             .container { padding: 16px 14px 40px; }
             .header { padding: 16px 18px; gap: 14px; }
@@ -736,7 +832,6 @@
             .result-title { font-size: 26px; }
             .result-desc { font-size: 16px; }
             .result-score { font-size: 38px; }
-            .full-version-section .price { font-size: 34px; }
             .full-version-section .features { grid-template-columns: 1fr; gap: 6px; }
             .blog-grid { grid-template-columns: 1fr; }
             .result-actions { flex-direction: column; }
@@ -751,84 +846,6 @@
             .test-actions { flex-direction: column; }
             .test-actions .btn { width: 100%; }
             .contact-btn { display: block; width: 100%; }
-        }
-
-        /* ============================================================
-           ПОЛЕ ДЛЯ EMAIL (новая секция)
-        ============================================================ */
-        .email-form {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            text-align: left;
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .email-form label {
-            display: block;
-            font-size: 15px;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-            text-align: center;
-        }
-
-        .email-form input {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 16px;
-            border: 1.5px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            font-size: 16px;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-            outline: none;
-        }
-
-        .email-form input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        .email-form input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .email-form .btn-send {
-            margin-top: 14px;
-            width: 100%;
-            display: inline-block;
-            background: linear-gradient(135deg, #00c9a7, #00b894);
-            color: #fff;
-            border: none;
-            padding: 16px 40px;
-            border-radius: 60px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 8px 32px rgba(0, 201, 167, 0.35);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .email-form .btn-send:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 12px 48px rgba(0, 201, 167, 0.45);
-        }
-
-        .email-form .btn-send:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        .email-form .form-note {
-            text-align: center;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 10px;
         }
     </style>
 </head>
@@ -922,23 +939,28 @@
         </section>
 
         <!-- ============================================================
-        ПОЛУЧИТЬ ПОЛНЫЙ РАЗБОР (600 ₽)
+        ПОЛНЫЙ РАЗБОР (БЕСПЛАТНО)
         ============================================================ -->
         <section class="full-version-section" id="fullVersionSection">
-            <p style="font-size:14px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">💎 Полный разбор сна</p>
-            <div class="price">600 ₽ <small>за персонализированное заключение</small></div>
+            <p style="font-size:14px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">🧠 Персональный разбор сна</p>
+            <div class="price-free">Бесплатно</div>
             <p>
-                Я изучу ваши ответы и подготовлю <strong>персональный разбор</strong> с учётом вашей ситуации.
+                Я изучу ваши ответы и подготовлю <strong>персональные рекомендации</strong> с учётом вашей ситуации.
             </p>
             <div class="features">
                 <span>Разбор по каждому из 10 вопросов</span>
-                <span>Оценка по 4 ключевым параметрам (инсомния, апноэ, циркадные ритмы, психоэмоциональное состояние)</span>
-                <span>Персональный план действий на 14 дней</span>
-                <span>Техники релаксации (дыхание, ПМР, визуализация)</span>
-                <span>Полное заключение сомнолога</span>
+                <span>Оценка по 4 ключевым параметрам</span>
+                <span>Персональный план действий</span>
+                <span>Техники релаксации</span>
                 <span>Рекомендации по питанию и режиму</span>
+                <span>Полное заключение сомнолога</span>
             </div>
-            <div>
+
+            <div style="margin-top:20px; font-size:15px; color:var(--text-secondary);">
+                📬 Оставьте контакт в форме под результатом теста — и я пришлю вам разбор.
+            </div>
+
+            <div style="margin-top:20px;">
                 <a href="https://t.me/khashi_1" target="_blank" class="contact-btn contact-btn-telegram">📱 Telegram</a>
                 <a href="https://max.ru/u/f9LHodD0cOJ-jlpDzCqhRtEDv5GYYEHd9aFKyjYtJ5XNyHD5Mhdd4J9HFVA" target="_blank" class="contact-btn contact-btn-max">💬 МАХ</a>
             </div>
@@ -946,7 +968,7 @@
                 Нажмите, чтобы связаться со мной напрямую
             </p>
             <div class="contact-note">
-                ⏳ <strong>В течение 24 часов</strong> после оплаты я проанализирую ваши ответы и отправлю персональный разбор.
+                ⏳ <strong>В течение 24 часов</strong> я проанализирую ваши ответы и отправлю персональный разбор.
                 <br>Каждый случай — индивидуально.
             </div>
         </section>
@@ -1394,20 +1416,20 @@
             const recommendation = matched ? matched.title + ': ' + matched.desc : 'Не определено';
 
             const message = `
-📬 Новый результат теста сна!
+        📬 Новый результат теста сна!
 
-👤 Контакт: ${contact}
-📊 Общий балл: ${total} / 30
+        👤 Контакт: ${contact}
+        📊 Общий балл: ${total} / 30
 
-📋 Ответы:
-${answersText}
+        📋 Ответы:
+        ${answersText}
 
-💡 Рекомендация:
-${recommendation}
+        💡 Рекомендация:
+        ${recommendation}
 
-📖 Из моей авторской методики:
-${matched ? matched.from_lecture : ''}
-            `;
+        📖 Из моей авторской методики:
+        ${matched ? matched.from_lecture : ''}
+                    `;
 
             // Отправляем через Formspree
             sendResultBtn.disabled = true;
