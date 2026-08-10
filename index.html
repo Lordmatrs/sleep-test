@@ -35,9 +35,7 @@
             --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -83,6 +81,9 @@
             z-index: 1;
         }
 
+        /* ============================================================
+           ХЕДЕР
+        ============================================================ */
         .header {
             display: flex;
             align-items: center;
@@ -113,10 +114,7 @@
             box-shadow: 0 0 30px var(--accent-glow);
         }
 
-        .header-info {
-            flex: 1;
-        }
-
+        .header-info { flex: 1; }
         .header-info h1 {
             font-family: 'Playfair Display', serif;
             font-size: 22px;
@@ -126,13 +124,11 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
         .header-info p {
             font-size: 14px;
             color: var(--text-secondary);
             margin-top: 2px;
         }
-
         .badge {
             background: var(--accent);
             padding: 6px 18px;
@@ -146,23 +142,23 @@
             white-space: nowrap;
         }
 
+        /* ============================================================
+           ГЕРОЙ
+        ============================================================ */
         .hero {
             text-align: center;
             padding: 30px 20px 20px;
         }
-
         .hero-icon {
             font-size: 58px;
             margin-bottom: 12px;
             display: block;
             animation: float 4s ease-in-out infinite;
         }
-
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-
         .hero h2 {
             font-family: 'Playfair Display', serif;
             font-size: 38px;
@@ -173,7 +169,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
         .hero p {
             font-size: 18px;
             color: var(--text-secondary);
@@ -181,7 +176,6 @@
             margin: 16px auto 28px;
             line-height: 1.7;
         }
-
         .hero .sub {
             font-size: 14px;
             color: var(--text-muted);
@@ -204,24 +198,18 @@
             letter-spacing: 0.3px;
             font-family: 'Inter', sans-serif;
         }
-
         .btn:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 12px 48px var(--accent-glow);
             background: linear-gradient(135deg, #8f82f5, #6a5bdc);
         }
-
-        .btn:active {
-            transform: scale(0.97);
-        }
-
+        .btn:active { transform: scale(0.97); }
         .btn-outline {
             background: transparent;
             border: 2px solid rgba(255, 255, 255, 0.15);
             box-shadow: none;
             color: var(--text-secondary);
         }
-
         .btn-outline:hover {
             background: var(--bg-card);
             border-color: var(--accent);
@@ -230,11 +218,10 @@
             box-shadow: 0 8px 24px var(--accent-glow);
         }
 
-        #testArea {
-            display: none;
-            margin-top: 30px;
-        }
-
+        /* ============================================================
+           ТЕСТ
+        ============================================================ */
+        #testArea { display: none; margin-top: 30px; }
         .progress-wrap {
             background: rgba(255, 255, 255, 0.06);
             height: 6px;
@@ -242,7 +229,6 @@
             margin-bottom: 6px;
             overflow: hidden;
         }
-
         .progress-bar {
             height: 100%;
             width: 0%;
@@ -251,7 +237,6 @@
             transition: width 0.5s ease;
             box-shadow: 0 0 20px var(--accent-glow);
         }
-
         .step-counter {
             text-align: right;
             font-size: 14px;
@@ -272,12 +257,10 @@
             transition: var(--transition);
             animation: fadeSlide 0.4s ease;
         }
-
         @keyframes fadeSlide {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-
         .question-text {
             font-size: 22px;
             font-weight: 600;
@@ -285,13 +268,11 @@
             line-height: 1.4;
             color: #fff;
         }
-
         .options {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-
         .options label {
             display: flex;
             align-items: center;
@@ -305,13 +286,11 @@
             font-size: 16px;
             color: var(--text-secondary);
         }
-
         .options label:hover {
             background: var(--bg-card-hover);
             border-color: var(--accent);
             color: #fff;
         }
-
         .options input[type="radio"] {
             appearance: none;
             width: 20px;
@@ -323,13 +302,11 @@
             transition: var(--transition);
             cursor: pointer;
         }
-
         .options input[type="radio"]:checked {
             border-color: var(--accent);
             background: var(--accent);
             box-shadow: 0 0 20px var(--accent-glow);
         }
-
         .options input[type="radio"]:checked::after {
             content: '';
             position: absolute;
@@ -341,7 +318,6 @@
             background: #fff;
             border-radius: 50%;
         }
-
         .options label:has(input:checked) {
             border-color: var(--accent);
             background: rgba(124, 109, 240, 0.12);
@@ -355,20 +331,17 @@
             gap: 16px;
             flex-wrap: wrap;
         }
-
         .test-actions .btn {
             padding: 14px 40px;
             font-size: 16px;
             min-width: 140px;
         }
-
         .btn-prev {
             background: transparent;
             border: 1.5px solid rgba(255, 255, 255, 0.1);
             box-shadow: none;
             color: var(--text-muted);
         }
-
         .btn-prev:hover {
             border-color: var(--text-secondary);
             color: #fff;
@@ -377,11 +350,10 @@
             box-shadow: none;
         }
 
-        #resultArea {
-            display: none;
-            margin-top: 30px;
-        }
-
+        /* ============================================================
+           РЕЗУЛЬТАТ
+        ============================================================ */
+        #resultArea { display: none; margin-top: 30px; }
         .result-box {
             background: var(--bg-card);
             backdrop-filter: blur(12px);
@@ -393,13 +365,11 @@
             animation: fadeSlide 0.6s ease;
             text-align: center;
         }
-
         .result-emoji {
             font-size: 64px;
             display: block;
             margin-bottom: 8px;
         }
-
         .result-tag {
             display: inline-block;
             background: var(--accent);
@@ -412,14 +382,12 @@
             margin-bottom: 16px;
             box-shadow: 0 0 24px var(--accent-glow);
         }
-
         .result-title {
             font-family: 'Playfair Display', serif;
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 12px;
         }
-
         .result-desc {
             font-size: 18px;
             color: var(--text-secondary);
@@ -427,7 +395,6 @@
             max-width: 640px;
             margin: 0 auto 16px;
         }
-
         .result-score {
             font-size: 48px;
             font-weight: 700;
@@ -435,13 +402,11 @@
             margin: 8px 0 20px;
             letter-spacing: -1px;
         }
-
         .result-score span {
             font-size: 20px;
             font-weight: 400;
             color: var(--text-muted);
         }
-
         .result-actions {
             display: flex;
             flex-wrap: wrap;
@@ -449,31 +414,26 @@
             justify-content: center;
             margin-top: 20px;
         }
-
         .result-actions .btn {
             padding: 14px 36px;
             font-size: 15px;
         }
-
         .result-detail {
             margin-top: 24px;
             padding-top: 24px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
-
         .result-detail h4 {
             font-size: 18px;
             margin-bottom: 10px;
             color: #fff;
         }
-
         .result-detail ul {
             list-style: none;
             text-align: left;
             max-width: 520px;
             margin: 0 auto;
         }
-
         .result-detail ul li {
             padding: 6px 0;
             padding-left: 28px;
@@ -482,14 +442,12 @@
             color: var(--text-secondary);
             line-height: 1.6;
         }
-
         .result-detail ul li::before {
             content: '▸';
             position: absolute;
             left: 4px;
             color: var(--accent-light);
         }
-
         .result-from-lecture {
             margin-top: 20px;
             padding: 16px 20px;
@@ -501,11 +459,11 @@
             line-height: 1.7;
             text-align: left;
         }
+        .result-from-lecture strong { color: #fff; }
 
-        .result-from-lecture strong {
-            color: #fff;
-        }
-
+        /* ============================================================
+           ПЕРСОНАЛЬНЫЙ РАЗБОР СНА
+        ============================================================ */
         .full-version-section {
             margin-top: 40px;
             padding: 32px 28px;
@@ -517,7 +475,6 @@
             text-align: center;
             box-shadow: var(--shadow-card);
         }
-
         .full-version-section p {
             color: var(--text-secondary);
             font-size: 15px;
@@ -526,7 +483,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         .full-version-section .features {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -535,7 +491,6 @@
             max-width: 540px;
             margin: 0 auto 24px;
         }
-
         .full-version-section .features span {
             font-size: 14px;
             color: var(--text-secondary);
@@ -543,13 +498,15 @@
             align-items: center;
             gap: 8px;
         }
-
         .full-version-section .features span::before {
             content: '✦';
             color: var(--accent-light);
             font-size: 12px;
         }
 
+        /* ============================================================
+           ФОРМА — ИМЯ И EMAIL
+        ============================================================ */
         .email-form {
             margin-top: 24px;
             padding-top: 24px;
@@ -559,7 +516,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         .email-form label {
             display: block;
             font-size: 15px;
@@ -567,7 +523,6 @@
             margin-bottom: 6px;
             text-align: center;
         }
-
         .email-form input {
             width: 100%;
             padding: 14px 18px;
@@ -579,19 +534,17 @@
             font-family: 'Inter', sans-serif;
             transition: var(--transition);
             outline: none;
+            margin-bottom: 12px;
         }
-
         .email-form input:focus {
             border-color: var(--accent);
             box-shadow: 0 0 20px var(--accent-glow);
         }
-
         .email-form input::placeholder {
             color: var(--text-muted);
         }
-
         .email-form .btn-send {
-            margin-top: 14px;
+            margin-top: 4px;
             width: 100%;
             display: inline-block;
             background: linear-gradient(135deg, #00c9a7, #00b894);
@@ -606,18 +559,15 @@
             box-shadow: 0 8px 32px rgba(0, 201, 167, 0.35);
             font-family: 'Inter', sans-serif;
         }
-
         .email-form .btn-send:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 12px 48px rgba(0, 201, 167, 0.45);
         }
-
         .email-form .btn-send:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none !important;
         }
-
         .email-form .form-note {
             text-align: center;
             font-size: 13px;
@@ -625,31 +575,30 @@
             margin-top: 10px;
         }
 
+        /* ============================================================
+           БЛОГ
+        ============================================================ */
         .blog-section {
             margin-top: 60px;
             padding-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
-
         .blog-section h3 {
             font-family: 'Playfair Display', serif;
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 6px;
         }
-
         .blog-section .subhead {
             color: var(--text-muted);
             font-size: 15px;
             margin-bottom: 28px;
         }
-
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
-
         .blog-card {
             background: var(--bg-card);
             backdrop-filter: blur(8px);
@@ -660,26 +609,22 @@
             transition: var(--transition);
             cursor: pointer;
         }
-
         .blog-card:hover {
             background: var(--bg-card-hover);
             transform: translateY(-4px);
             border-color: rgba(255, 255, 255, 0.08);
         }
-
         .blog-card h4 {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 6px;
             color: #fff;
         }
-
         .blog-card .preview {
             font-size: 14px;
             color: var(--text-secondary);
             line-height: 1.6;
         }
-
         .blog-card .full-text {
             display: none;
             margin-top: 16px;
@@ -689,15 +634,8 @@
             color: var(--text-secondary);
             line-height: 1.8;
         }
-
-        .blog-card .full-text p {
-            margin-bottom: 10px;
-        }
-
-        .blog-card .full-text.show {
-            display: block;
-        }
-
+        .blog-card .full-text p { margin-bottom: 10px; }
+        .blog-card .full-text.show { display: block; }
         .blog-card .read-more {
             display: inline-block;
             margin-top: 12px;
@@ -705,7 +643,6 @@
             font-size: 14px;
             font-weight: 600;
         }
-
         .blog-card .date {
             display: block;
             margin-top: 12px;
@@ -714,6 +651,9 @@
             letter-spacing: 0.3px;
         }
 
+        /* ============================================================
+           ФУТЕР
+        ============================================================ */
         .footer {
             margin-top: 50px;
             text-align: center;
@@ -722,7 +662,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.04);
             padding-top: 30px;
         }
-
         .footer .diploma {
             font-size: 12px;
             color: var(--text-muted);
@@ -730,6 +669,9 @@
             opacity: 0.7;
         }
 
+        /* ============================================================
+           АДАПТИВ
+        ============================================================ */
         @media (max-width: 640px) {
             .container { padding: 16px 14px 40px; }
             .header { padding: 16px 18px; gap: 14px; }
@@ -752,7 +694,6 @@
             .result-actions { flex-direction: column; }
             .result-actions .btn { width: 100%; }
         }
-
         @media (max-width: 400px) {
             .hero h2 { font-size: 22px; }
             .header-info h1 { font-size: 15px; }
@@ -809,11 +750,7 @@
                 <div class="progress-bar" id="progressBar"></div>
             </div>
             <div class="step-counter" id="stepCounter">1 / 10</div>
-
-            <div id="questionContainer">
-                <!-- Вопросы рендерятся через JS -->
-            </div>
-
+            <div id="questionContainer"></div>
             <div class="test-actions">
                 <button class="btn btn-prev" id="prevBtn" style="visibility:hidden;">← Назад</button>
                 <button class="btn" id="nextBtn">Далее →</button>
@@ -829,19 +766,16 @@
                 <span class="result-tag" id="resultTag">Отличный сон</span>
                 <div class="result-score" id="resultScore">0 <span>/ 30</span></div>
                 <h3 class="result-title" id="resultTitle">Ваш сон в норме!</h3>
-                <div class="result-desc" id="resultDesc">
-                    Текст рекомендации появится здесь.
-                </div>
-                <div class="result-detail" id="resultDetail">
-                    <!-- Детали подгружаются из JS -->
-                </div>
+                <div class="result-desc" id="resultDesc">Текст рекомендации появится здесь.</div>
+                <div class="result-detail" id="resultDetail"></div>
 
                 <!-- ============================================================
-                ФОРМА ДЛЯ ОТПРАВКИ НА ПОЧТУ
+                ФОРМА — ИМЯ И EMAIL
                 ============================================================ -->
                 <div class="email-form" id="emailForm">
-                    <label for="userContact">📬 Хотите получить персональный разбор? Оставьте контакт:</label>
-                    <input type="text" id="userContact" placeholder="Телефон, Telegram или email" />
+                    <label for="userName">📬 Оставьте имя и email, чтобы я мог связаться с вами:</label>
+                    <input type="text" id="userName" placeholder="Ваше имя" />
+                    <input type="email" id="userEmail" placeholder="Ваш email" />
                     <button class="btn-send" id="sendResultBtn">📧 Отправить результат</button>
                     <div class="form-note" id="formNote">Ваши ответы и рекомендации будут отправлены сомнологу. Обработка в течение 24 часов.</div>
                 </div>
@@ -857,10 +791,10 @@
         ============================================================ -->
         <section class="full-version-section" id="fullVersionSection">
             <p style="font-size:14px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">🧠 Персональный разбор сна</p>
-            <p style="font-size:20px; font-weight:600; color:#fff; margin:4px 0 8px;">
+            <p style="font-size:24px; font-weight:700; color:#ffffff; margin:8px 0 12px; text-align:center;">
                 Получите индивидуальные рекомендации
             </p>
-            <p style="color:var(--text-secondary); font-size:15px; margin-bottom:20px; max-width:500px; margin-left:auto; margin-right:auto;">
+            <p style="color:var(--text-secondary); font-size:16px; margin-bottom:24px; max-width:520px; margin-left:auto; margin-right:auto; text-align:center; line-height:1.7;">
                 Я изучу ваши ответы и подготовлю <strong>персональные рекомендации</strong> с учётом вашей ситуации.
             </p>
             <div class="features">
@@ -872,16 +806,16 @@
                 <span>Полное заключение сомнолога</span>
             </div>
 
-            <div style="margin-top:24px; font-size:17px; color:var(--text-secondary); font-weight:500;">
+            <div style="margin-top:28px; font-size:18px; color:var(--text-secondary); font-weight:600; text-align:center;">
                 📬 Хотите получить персональный разбор?
             </div>
-            <div style="font-size:15px; color:var(--text-muted); margin-top:4px;">
-                Оставьте контакт в форме под результатом теста — и я пришлю вам разбор.
+            <div style="font-size:16px; color:var(--text-muted); margin-top:6px; text-align:center;">
+                Оставьте имя и email в форме под результатом теста — и я пришлю вам разбор.
             </div>
         </section>
 
         <!-- ============================================================
-        БЛОГ (с раскрытием)
+        БЛОГ
         ============================================================ -->
         <section class="blog-section">
             <h3>📖 Блог сомнолога</h3>
@@ -990,18 +924,12 @@
         function toggleBlog(card) {
             const fullText = card.querySelector('.full-text');
             const readMore = card.querySelector('.read-more');
-
             if (fullText.classList.contains('show')) {
                 fullText.classList.remove('show');
                 readMore.textContent = '📖 Читать полностью →';
             } else {
-                document.querySelectorAll('.blog-card .full-text').forEach(el => {
-                    el.classList.remove('show');
-                });
-                document.querySelectorAll('.blog-card .read-more').forEach(el => {
-                    el.textContent = '📖 Читать полностью →';
-                });
-
+                document.querySelectorAll('.blog-card .full-text').forEach(el => el.classList.remove('show'));
+                document.querySelectorAll('.blog-card .read-more').forEach(el => el.textContent = '📖 Читать полностью →');
                 fullText.classList.add('show');
                 readMore.textContent = '📕 Свернуть';
             }
@@ -1186,9 +1114,9 @@
         const retestBtn = document.getElementById('retestBtn');
         const heroSection = document.getElementById('heroSection');
 
-        // Элементы для отправки на почту
         const sendResultBtn = document.getElementById('sendResultBtn');
-        const userContactInput = document.getElementById('userContact');
+        const userNameInput = document.getElementById('userName');
+        const userEmailInput = document.getElementById('userEmail');
         const formNote = document.getElementById('formNote');
 
         function showTest() {
@@ -1204,85 +1132,48 @@
         function renderQuestion(index) {
             const q = questions[index];
             if (!q) return;
-
-            let html = `<div class="question-block">
-                            <div class="question-text">${q.text}</div>
-                            <div class="options">`;
-
+            let html = `<div class="question-block"><div class="question-text">${q.text}</div><div class="options">`;
             q.options.forEach((opt, i) => {
                 const checked = answers[index] === i ? 'checked' : '';
-                html += `
-                            <label>
-                                <input type="radio" name="q${q.id}" value="${i}" ${checked} />
-                                ${opt.label}
-                            </label>
-                        `;
+                html += `<label><input type="radio" name="q${q.id}" value="${i}" ${checked} />${opt.label}</label>`;
             });
-
             html += `</div></div>`;
             questionContainer.innerHTML = html;
 
             const progress = ((index + 1) / questions.length) * 100;
             progressBar.style.width = progress + '%';
             stepCounter.textContent = `${index + 1} / ${questions.length}`;
-
             prevBtn.style.visibility = index === 0 ? 'hidden' : 'visible';
-
-            if (index === questions.length - 1) {
-                nextBtn.textContent = '📊 Узнать результат';
-            } else {
-                nextBtn.textContent = 'Далее →';
-            }
+            nextBtn.textContent = index === questions.length - 1 ? '📊 Узнать результат' : 'Далее →';
 
             const radios = document.querySelectorAll(`input[name="q${q.id}"]`);
-            radios.forEach((r, idx) => {
-                r.addEventListener('change', () => {
-                    answers[index] = idx;
-                });
-            });
-
+            radios.forEach((r, idx) => r.addEventListener('change', () => { answers[index] = idx; }));
             if (answers[index] !== undefined) {
                 const checkedRadio = document.querySelector(`input[name="q${q.id}"][value="${answers[index]}"]`);
                 if (checkedRadio) checkedRadio.checked = true;
             }
-
             questionContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function handleNext() {
             const q = questions[currentStep];
             const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
-
             if (!selected) {
                 const block = document.querySelector('.question-block');
                 block.style.borderColor = '#ff6b6b';
                 setTimeout(() => block.style.borderColor = '', 1000);
                 return;
             }
-
-            const value = parseInt(selected.value);
-            answers[currentStep] = value;
-
-            if (currentStep === questions.length - 1) {
-                showResult();
-            } else {
-                currentStep++;
-                renderQuestion(currentStep);
-            }
+            answers[currentStep] = parseInt(selected.value);
+            if (currentStep === questions.length - 1) showResult();
+            else { currentStep++; renderQuestion(currentStep); }
         }
 
-        function handlePrev() {
-            if (currentStep > 0) {
-                currentStep--;
-                renderQuestion(currentStep);
-            }
-        }
+        function handlePrev() { if (currentStep > 0) { currentStep--; renderQuestion(currentStep); } }
 
         function showResult() {
             const total = answers.reduce((sum, val) => sum + val, 0);
-
-            let matched = results.find(r => total >= r.min && total <= r.max);
-            if (!matched) matched = results[results.length - 1];
+            let matched = results.find(r => total >= r.min && total <= r.max) || results[results.length - 1];
 
             document.getElementById('resultEmoji').textContent = matched.emoji;
             document.getElementById('resultTag').textContent = matched.tag;
@@ -1291,9 +1182,7 @@
             document.getElementById('resultScore').innerHTML = `${total} <span>/ 30</span>`;
 
             let detailHtml = `<h4>📋 Что делать прямо сейчас</h4><ul>`;
-            matched.detail.forEach(item => {
-                detailHtml += `<li>${item}</li>`;
-            });
+            matched.detail.forEach(item => { detailHtml += `<li>${item}</li>`; });
             detailHtml += `</ul>`;
             detailHtml += `<div class="result-from-lecture"><strong>📖 Из моей авторской методики:</strong> ${matched.from_lecture}</div>`;
             document.getElementById('resultDetail').innerHTML = detailHtml;
@@ -1301,17 +1190,16 @@
             testArea.style.display = 'none';
             resultArea.style.display = 'block';
             fullVersionSection.style.display = 'block';
-
             resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         // ============================================================
-        // 6. ОТПРАВКА НА ПОЧТУ ЧЕРЕЗ FORMSPREE
+        // 6. ОТПРАВКА НА ПОЧТУ (Имя + Email)
         // ============================================================
         async function sendResultsToEmail() {
-            const contact = userContactInput.value.trim() || 'Не указан';
+            const name = userNameInput.value.trim() || 'Не указан';
+            const email = userEmailInput.value.trim() || 'Не указан';
 
-            // Собираем все ответы в читаемом виде
             const answersText = questions.map((q, idx) => {
                 const answerIndex = answers[idx];
                 const answerText = q.options[answerIndex]?.label || 'Не выбран';
@@ -1319,13 +1207,14 @@
             }).join('\n');
 
             const total = answers.reduce((sum, val) => sum + val, 0);
-            const matched = results.find(r => total >= r.min && total <= r.max);
+            const matched = results.find(r => total >= r.min && total <= r.max) || results[results.length - 1];
             const recommendation = matched ? matched.title + ': ' + matched.desc : 'Не определено';
 
             const message = `
         📬 Новый результат теста сна!
 
-        👤 Контакт: ${contact}
+        👤 Имя: ${name}
+        📧 Email: ${email}
         📊 Общий балл: ${total} / 30
 
         📋 Ответы:
@@ -1338,7 +1227,6 @@
         ${matched ? matched.from_lecture : ''}
                     `;
 
-            // Отправляем через Formspree
             sendResultBtn.disabled = true;
             sendResultBtn.textContent = '⏳ Отправка...';
             formNote.textContent = '⏳ Отправляю данные...';
@@ -1346,19 +1234,16 @@
             try {
                 const response = await fetch('https://formspree.io/f/xqpzpodo', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify({
                         message: message,
-                        contact: contact,
+                        name: name,
+                        email: email,
                         score: `${total}/30`,
                         answers: answersText,
                         recommendation: recommendation
                     })
                 });
-
                 if (response.ok) {
                     formNote.textContent = '✅ Результат успешно отправлен! Я свяжусь с вами в ближайшее время.';
                     sendResultBtn.textContent = '✅ Отправлено';
@@ -1380,10 +1265,7 @@
         startBtn.addEventListener('click', showTest);
         nextBtn.addEventListener('click', handleNext);
         prevBtn.addEventListener('click', handlePrev);
-        retestBtn.addEventListener('click', resetTest);
-        sendResultBtn.addEventListener('click', sendResultsToEmail);
-
-        function resetTest() {
+        retestBtn.addEventListener('click', () => {
             currentStep = 0;
             answers = [];
             resultArea.style.display = 'none';
@@ -1391,17 +1273,16 @@
             fullVersionSection.style.display = 'block';
             heroSection.style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            // Сбрасываем состояние кнопки
             sendResultBtn.disabled = false;
             sendResultBtn.textContent = '📧 Отправить результат';
             formNote.textContent = 'Ваши ответы и рекомендации будут отправлены сомнологу. Обработка в течение 24 часов.';
-            userContactInput.value = '';
-        }
+            userNameInput.value = '';
+            userEmailInput.value = '';
+        });
+        sendResultBtn.addEventListener('click', sendResultsToEmail);
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && testArea.style.display === 'block') {
-                handleNext();
-            }
+            if (e.key === 'Enter' && testArea.style.display === 'block') handleNext();
         });
 
         testArea.style.display = 'none';
