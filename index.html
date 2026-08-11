@@ -640,8 +640,84 @@
             font-size: 12px;
         }
 
+        /* Адаптив для телефона */
+        @media (max-width: 640px) {
+            .full-version-section {
+                padding: 24px 18px;
+                margin-top: 30px;
+            }
+            .full-version-section .features {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+            .full-version-section .features span {
+                font-size: 13px;
+            }
+        }
+
+        /* ============================================================
+           ОТЗЫВ
+        ============================================================ */
+        .review-block {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(124, 109, 240, 0.08);
+            border-radius: 16px;
+            border-left: 3px solid var(--accent);
+            text-align: center;
+        }
+
+        .review-block p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .review-block .author {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            font-style: normal;
+        }
+
+        /* ============================================================
+           РАЗДЕЛИТЕЛЬ
+        ============================================================ */
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+            margin: 40px 0;
+        }
+
+        /* ============================================================
+           ПРИЗЫВ ВНИЗУ
+        ============================================================ */
+        .cta-bottom {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .cta-bottom p {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .cta-bottom a {
+            color: var(--accent-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .cta-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================================
+           БЛОГ
+        ============================================================ */
         .blog-section {
-            margin-top: 60px;
+            margin-top: 40px;
             padding-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
@@ -801,10 +877,6 @@
             .result-score {
                 font-size: 38px;
             }
-            .full-version-section .features {
-                grid-template-columns: 1fr;
-                gap: 6px;
-            }
             .blog-grid {
                 grid-template-columns: 1fr;
             }
@@ -813,6 +885,9 @@
             }
             .result-actions .btn {
                 width: 100%;
+            }
+            .review-block p {
+                font-size: 14px;
             }
         }
 
@@ -942,6 +1017,19 @@
         </section>
 
         <!-- ============================================================
+        ОТЗЫВ
+        ============================================================ -->
+        <div class="review-block">
+            <p>«Очень понравилось! После теста получила разбор, который реально помог. Спасибо, Михаил!»</p>
+            <div class="author">— Елена, 34 года</div>
+        </div>
+
+        <!-- ============================================================
+        РАЗДЕЛИТЕЛЬ
+        ============================================================ -->
+        <div class="divider"></div>
+
+        <!-- ============================================================
         БЛОГ
         ============================================================ -->
         <section class="blog-section">
@@ -1010,6 +1098,13 @@
                 </div>
             </div>
         </section>
+
+        <!-- ============================================================
+        ПРИЗЫВ ВНИЗУ
+        ============================================================ -->
+        <div class="cta-bottom">
+            <p>💬 Остались вопросы? Напишите мне в <a href="https://t.me/khashi_1" target="_blank">Telegram</a></p>
+        </div>
 
         <!-- ============================================================
         ФУТЕР
