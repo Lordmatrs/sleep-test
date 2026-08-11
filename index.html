@@ -526,6 +526,9 @@
             color: #fff;
         }
 
+        /* ============================================================
+           ФОРМА — ИМЯ И EMAIL
+        ============================================================ */
         .email-form {
             margin-top: 24px;
             padding-top: 24px;
@@ -930,9 +933,7 @@
         ХЕДЕР
         ============================================================ -->
         <header class="header">
-           <div class="avatar">
-    <img src="logo.png.png" alt="Логотип" style="width:100%; height:100%; border-radius:50%; object-fit:cover;" />
-</div>
+            <div class="avatar">🌙</div>
             <div class="header-info">
                 <h1>Михаил Фролов</h1>
                 <p>Сомнолог-консультант</p>
@@ -982,7 +983,7 @@
                 <div class="result-detail" id="resultDetail"></div>
 
                 <!-- ============================================================
-                ФОРМА — ИМЯ И EMAIL (С ПРОВЕРКОЙ)
+                ФОРМА — ИМЯ И EMAIL
                 ============================================================ -->
                 <div class="email-form" id="emailForm">
                     <label for="userName">📬 Оставьте имя и email, чтобы я мог связаться с вами:</label>
@@ -1105,8 +1106,8 @@
         ПРИЗЫВ ВНИЗУ
         ============================================================ -->
         <div class="cta-bottom">
-    <p>💬 Остались вопросы? Напишите мне в <a href="https://max.ru/u/f9LHodD0cOJ-jlpDzCqhRtEDv5GYYEHd9aFKyjYtJ5XNyHD5Mhdd4J9HFVA" target="_blank">МАХ</a></p>
-</div>
+            <p>💬 Остались вопросы? Напишите мне в <a href="https://max.ru/u/f9LHodD0cOJ-jlpDzCqhRtEDv5GYYEHd9aFKyjYtJ5XNyHD5Mhdd4J9HFVA" target="_blank">МАХ</a></p>
+        </div>
 
         <!-- ============================================================
         ФУТЕР
@@ -1437,12 +1438,13 @@
         }
 
         // ============================================================
-        // 6. ОТПРАВКА НА ПОЧТУ
+        // 6. ОТПРАВКА С ИМЕНЕМ И EMAIL (принимает любые почты)
         // ============================================================
         async function sendResultsToEmail() {
             const name = userNameInput.value.trim();
             const email = userEmailInput.value.trim();
 
+            // === ПРОВЕРКА ===
             if (!name) {
                 formNote.textContent = '❌ Пожалуйста, введите ваше имя.';
                 formNote.style.color = '#ff6b6b';
@@ -1457,13 +1459,15 @@
                 setTimeout(() => { userEmailInput.style.borderColor = ''; }, 3000);
                 return;
             }
-            if (!email.includes('@') || !email.includes('.')) {
-                formNote.textContent = '❌ Введите корректный email (например, name@mail.ru).';
+            // Проверяем только наличие @ — всё остальное не важно
+            if (!email.includes('@')) {
+                formNote.textContent = '❌ Введите корректный email (например, name@mail.ru)';
                 formNote.style.color = '#ff6b6b';
                 userEmailInput.style.borderColor = '#ff6b6b';
                 setTimeout(() => { userEmailInput.style.borderColor = ''; }, 3000);
                 return;
             }
+            // ==================
 
             const answersText = questions.map((q, idx) => {
                 const answerIndex = answers[idx];
