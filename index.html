@@ -4,13 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Тест сна | Сомнолог-консультант Михаил Фролов</title>
-     <!-- ===== МЕТА-ТЕГ ДЛЯ ПОДТВЕРЖДЕНИЯ ЯНДЕКСА ===== -->
+    <!-- ===== МЕТА-ТЕГ ДЛЯ ПОДТВЕРЖДЕНИЯ ЯНДЕКСА ===== -->
     <meta name="yandex-verification" content="8f08bb75ce719085" />
     <!-- ================================================ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,600;1,700&display=swap" rel="stylesheet" />
     <style>
+        /* ============================================================
+           БАЗОВЫЕ СТИЛИ
+        ============================================================ */
         *,
         *::before,
         *::after {
@@ -523,50 +526,6 @@
             color: #fff;
         }
 
-        .full-version-section {
-            margin-top: 40px;
-            padding: 32px 28px;
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: var(--radius);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            text-align: center;
-            box-shadow: var(--shadow-card);
-        }
-
-        .full-version-section p {
-            color: var(--text-secondary);
-            font-size: 15px;
-            margin-bottom: 20px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .full-version-section .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px 20px;
-            text-align: left;
-            max-width: 540px;
-            margin: 0 auto 24px;
-        }
-
-        .full-version-section .features span {
-            font-size: 14px;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .full-version-section .features span::before {
-            content: '✦';
-            color: var(--accent-light);
-            font-size: 12px;
-        }
-
         .email-form {
             margin-top: 24px;
             padding-top: 24px;
@@ -804,10 +763,6 @@
             .result-score {
                 font-size: 38px;
             }
-            .full-version-section .features {
-                grid-template-columns: 1fr;
-                gap: 6px;
-            }
             .blog-grid {
                 grid-template-columns: 1fr;
             }
@@ -873,7 +828,7 @@
             <span class="hero-icon">🌙</span>
             <h2>Тест вашего сна</h2>
             <p>
-                Ответьте на 10 вопросов — и получите персонализированный разбор
+                Ответьте на 12 вопросов — и получите персонализированный разбор
                 вашего сна. Без очередей. Без консультаций. <strong>Результат — сразу.</strong>
             </p>
             <p class="sub">🧠 Основано на Питтсбургском опроснике (PSQI) и шкале Эпворта</p>
@@ -887,7 +842,7 @@
             <div class="progress-wrap">
                 <div class="progress-bar" id="progressBar"></div>
             </div>
-            <div class="step-counter" id="stepCounter">1 / 10</div>
+            <div class="step-counter" id="stepCounter">1 / 12</div>
             <div id="questionContainer"></div>
             <div class="test-actions">
                 <button class="btn btn-prev" id="prevBtn" style="visibility:hidden;">← Назад</button>
@@ -902,7 +857,7 @@
             <div class="result-box">
                 <span class="result-emoji" id="resultEmoji">💚</span>
                 <span class="result-tag" id="resultTag">Отличный сон</span>
-                <div class="result-score" id="resultScore">0 <span>/ 30</span></div>
+                <div class="result-score" id="resultScore">0 <span>/ 36</span></div>
                 <h3 class="result-title" id="resultTitle">Ваш сон в норме!</h3>
                 <div class="result-desc" id="resultDesc">Текст рекомендации появится здесь.</div>
                 <div class="result-detail" id="resultDetail"></div>
@@ -921,34 +876,6 @@
                 <div class="result-actions">
                     <button class="btn btn-outline" id="retestBtn">↻ Пройти заново</button>
                 </div>
-            </div>
-        </section>
-
-        <!-- ============================================================
-        ПЕРСОНАЛЬНЫЙ РАЗБОР СНА
-        ============================================================ -->
-        <section class="full-version-section" id="fullVersionSection" style="text-align:center;">
-    
-            <p style="font-size:clamp(20px, 5vw, 28px); font-weight:700; color:#ffffff; margin:12px auto 10px; line-height:1.3; max-width:90%; word-wrap:break-word; text-align:center;">
-                Получите индивидуальные рекомендации
-            </p>
-            <p style="color:var(--text-secondary); font-size:16px; max-width:500px; margin:0 auto 24px; line-height:1.6; text-align:center;">
-                Я изучу ваши ответы и подготовлю <strong>персональные рекомендации</strong> с учётом вашей ситуации.
-            </p>
-            <div class="features" style="text-align:left; max-width:500px; margin:0 auto 24px;">
-                <span>Разбор по каждому из 10 вопросов</span>
-                <span>Оценка по 4 ключевым параметрам</span>
-                <span>Персональный план действий</span>
-                <span>Техники релаксации</span>
-                <span>Рекомендации по питанию и режиму</span>
-                <span>Полное заключение сомнолога</span>
-            </div>
-
-            <div style="font-size:18px; color:var(--text-secondary); font-weight:600; margin-top:20px; text-align:center;">
-                📬 Хотите получить персональный разбор?
-            </div>
-            <div style="font-size:15px; color:var(--text-muted); margin-top:4px; text-align:center;">
-                Оставьте имя и email в форме под результатом теста — и я пришлю вам разбор.
             </div>
         </section>
 
@@ -1074,7 +1001,7 @@
         }
 
         // ============================================================
-        // 3. ДАННЫЕ ТЕСТА
+        // 3. ДАННЫЕ ТЕСТА (12 ВОПРОСОВ)
         // ============================================================
         const questions = [{
             id: 1,
@@ -1166,14 +1093,33 @@
                 { label: 'Иногда', value: 2 },
                 { label: 'Часто', value: 3 },
             ]
+        }, {
+            id: 11,
+            text: 'Храпите ли вы или замечали, что у вас останавливается дыхание во сне?',
+            options: [
+                { label: 'Нет, никогда', value: 0 },
+                { label: 'Иногда храплю, но остановок дыхания не замечал(а)', value: 1 },
+                { label: 'Храплю часто, иногда замечаю остановки дыхания', value: 2 },
+                { label: 'Храплю постоянно, партнёр говорит об остановках дыхания', value: 3 },
+            ]
+        }, {
+            id: 12,
+            text: 'Есть ли у вас что-то, что может влиять на сон, кроме указанного? (выберите один вариант)',
+            options: [
+                { label: 'Нет, ничего особенного', value: 0 },
+                { label: 'Беременность', value: 0 },
+                { label: 'Хроническое заболевание (диабет, гипертония и др.)', value: 0 },
+                { label: 'Работа в ночные смены или частые перелёты', value: 0 },
+                { label: 'Другое', value: 0 },
+            ]
         }];
 
         // ============================================================
-        // 4. РЕЗУЛЬТАТЫ
+        // 4. РЕЗУЛЬТАТЫ (с учётом новых вопросов)
         // ============================================================
         const results = [{
             min: 0,
-            max: 5,
+            max: 6,
             emoji: '💚',
             tag: 'Отличный сон',
             title: 'Ваш сон в норме!',
@@ -1186,8 +1132,8 @@
             ],
             from_lecture: '«Гигиена сна — это фундамент здоровья. Даже при отличном сне важно сохранять привычки, чтобы стресс или сезонные изменения не нарушили ваш отдых. Сон — это не роскошь, а базовая потребность организма, как дыхание.»'
         }, {
-            min: 6,
-            max: 12,
+            min: 7,
+            max: 14,
             emoji: '💛',
             tag: 'Лёгкие нарушения',
             title: 'Есть над чем поработать',
@@ -1201,8 +1147,8 @@
             ],
             from_lecture: '«Нарушения сна на ранней стадии корректируются поведением. Когнитивно-поведенческая терапия сна начинается с осознания своих привычек. Иногда достаточно 2 недель, чтобы восстановить нормальный сон.»'
         }, {
-            min: 13,
-            max: 18,
+            min: 15,
+            max: 22,
             emoji: '🧡',
             tag: 'Умеренные нарушения',
             title: 'Сон требует внимания',
@@ -1217,8 +1163,8 @@
             ],
             from_lecture: '«Стресс и тревога — главные враги сна. Работа с телом через релаксацию даёт результат быстрее, чем попытки "просто уснуть". Сон — это зеркало вашего психоэмоционального состояния.»'
         }, {
-            min: 19,
-            max: 30,
+            min: 23,
+            max: 36,
             emoji: '❤️',
             tag: 'Выраженные нарушения',
             title: 'Не откладывайте!',
@@ -1242,7 +1188,6 @@
 
         const testArea = document.getElementById('testArea');
         const resultArea = document.getElementById('resultArea');
-        const fullVersionSection = document.getElementById('fullVersionSection');
         const questionContainer = document.getElementById('questionContainer');
         const progressBar = document.getElementById('progressBar');
         const stepCounter = document.getElementById('stepCounter');
@@ -1261,7 +1206,6 @@
             heroSection.style.display = 'none';
             testArea.style.display = 'block';
             resultArea.style.display = 'none';
-            fullVersionSection.style.display = 'block';
             currentStep = 0;
             answers = [];
             renderQuestion(0);
@@ -1319,7 +1263,7 @@
             document.getElementById('resultTag').textContent = matched.tag;
             document.getElementById('resultTitle').textContent = matched.title;
             document.getElementById('resultDesc').textContent = matched.desc;
-            document.getElementById('resultScore').innerHTML = `${total} <span>/ 30</span>`;
+            document.getElementById('resultScore').innerHTML = `${total} <span>/ 36</span>`;
 
             let detailHtml = `<h4>📋 Что делать прямо сейчас</h4><ul>`;
             matched.detail.forEach(item => { detailHtml += `<li>${item}</li>`; });
@@ -1330,18 +1274,16 @@
 
             testArea.style.display = 'none';
             resultArea.style.display = 'block';
-            fullVersionSection.style.display = 'block';
             resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         // ============================================================
-        // 6. ОТПРАВКА НА ПОЧТУ (Имя + Email) С ПРОВЕРКОЙ
+        // 6. ОТПРАВКА НА ПОЧТУ
         // ============================================================
         async function sendResultsToEmail() {
             const name = userNameInput.value.trim();
             const email = userEmailInput.value.trim();
 
-            // === ПРОВЕРКА ===
             if (!name) {
                 formNote.textContent = '❌ Пожалуйста, введите ваше имя.';
                 formNote.style.color = '#ff6b6b';
@@ -1363,7 +1305,6 @@
                 setTimeout(() => { userEmailInput.style.borderColor = ''; }, 3000);
                 return;
             }
-            // ==================
 
             const answersText = questions.map((q, idx) => {
                 const answerIndex = answers[idx];
@@ -1380,7 +1321,7 @@
 
                 👤 Имя: ${name}
                 📧 Email: ${email}
-                📊 Общий балл: ${total} / 30
+                📊 Общий балл: ${total} / 36
 
                 📋 Ответы:
                 ${answersText}
@@ -1405,7 +1346,7 @@
                         message: message,
                         name: name,
                         email: email,
-                        score: `${total}/30`,
+                        score: `${total}/36`,
                         answers: answersText,
                         recommendation: recommendation
                     })
@@ -1438,7 +1379,6 @@
             answers = [];
             resultArea.style.display = 'none';
             testArea.style.display = 'none';
-            fullVersionSection.style.display = 'block';
             heroSection.style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
             sendResultBtn.disabled = false;
@@ -1458,7 +1398,7 @@
 
         testArea.style.display = 'none';
         resultArea.style.display = 'none';
-        fullVersionSection.style.display = 'block';
+        heroSection.style.display = 'block';
     </script>
 
 </body>
