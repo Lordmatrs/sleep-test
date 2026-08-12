@@ -9,10 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,600;1,700&display=swap" rel="stylesheet" />
     
-    <!-- Подключаем EmailJS -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
     
     <style>
+        /* ============================================================
+           БАЗОВЫЕ СТИЛИ
+        ============================================================ */
         *,
         *::before,
         *::after {
@@ -612,7 +616,7 @@
             display: none;
             width: 22px;
             height: 22px;
-            border: 3px solid rgba(255,255,255,0.2);
+            border: 3px solid rgba(255, 255, 255, 0.2);
             border-top-color: #fff;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
@@ -671,7 +675,7 @@
         }
 
         /* ============================================================
-           ОСТАЛЬНЫЕ СТИЛИ (без изменений)
+           ОСТАЛЬНЫЕ СТИЛИ
         ============================================================ */
         .full-version-section {
             margin-top: 40px;
@@ -955,7 +959,7 @@
                 <div class="result-detail" id="resultDetail"></div>
 
                 <!-- ============================================================
-                   КРАСИВАЯ ФОРМА СВЯЗИ
+                   КРАСИВАЯ ФОРМА СВЯЗИ (EmailJS)
                 ============================================================ -->
                 <div class="contact-form-container">
                     <h3>📬 Получите полный разбор</h3>
@@ -1151,7 +1155,17 @@
         }
 
         // ============================================================
-        // 3. ТЕСТ
+        // 3. EMAILJS — ОТПРАВКА ФОРМЫ НА ПОЧТУ
+        // ============================================================
+        // Инициализация EmailJS с вашим Public Key
+        (function initEmailJS() {
+            emailjs.init({
+                publicKey: "N140cViz-muDO9seO", // ✅ Ваш Public Key
+            });
+        })();
+
+        // ============================================================
+        // 4. ТЕСТ
         // ============================================================
         const questions = [
             { id: 1, text: 'Как часто вы просыпаетесь в середине ночи или под утро?', options: [{ label: 'Ни разу', value: 0 }, { label: 'Менее 1 раза в неделю', value: 1 }, { label: '1–2 раза в неделю', value: 2 }, { label: '3 и более раз в неделю', value: 3 }] },
@@ -1338,17 +1352,8 @@
         });
 
         // ============================================================
-        // 4. EMAILJS — ОТПРАВКА ФОРМЫ НА ПОЧТУ
+        // 5. ОБРАБОТКА ФОРМЫ С ОТПРАВКОЙ НА ПОЧТУ
         // ============================================================
-        // Инициализация EmailJS
-        (function initEmailJS() {
-            // ⚠️ ЗАМЕНИТЕ ЭТИ ЗНАЧЕНИЯ НА СВОИ (получить на emailjs.com)
-            // БЕСПЛАТНО до 200 писем в месяц
-            emailjs.init({
-                publicKey: "YOUR_PUBLIC_KEY", // 👈 Получить в кабинете EmailJS
-            });
-        })();
-
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const successMessage = document.getElementById('successMessage');
@@ -1357,7 +1362,7 @@
         const nameError = document.getElementById('nameError');
         const emailError = document.getElementById('emailError');
 
-        // Валидация полей в реальном времени
+        // Валидация в реальном времени
         nameInput.addEventListener('input', () => {
             if (nameInput.value.trim().length >= 2) {
                 nameInput.classList.remove('error');
@@ -1382,7 +1387,6 @@
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Валидация
             let isValid = true;
 
             if (nameInput.value.trim().length < 2) {
@@ -1405,26 +1409,24 @@
 
             if (!isValid) return;
 
-            // Показываем загрузку
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
 
-            // ⚠️ ЗАМЕНИТЕ ЭТИ ЗНАЧЕНИЯ НА СВОИ
             const templateParams = {
-                to_name: "Михаил Фролов", // Ваше имя
                 from_name: nameInput.value,
                 from_email: emailInput.value,
                 result_score: document.getElementById('resultScoreHidden').value || 'Не указано',
                 result_tag: document.getElementById('resultTagHidden').value || 'Не указано',
                 result_detail: document.getElementById('resultDetailHidden').value || 'Не указано',
                 message: `Результат теста: ${document.getElementById('resultTagHidden').value || 'Не указано'}\nБаллы: ${document.getElementById('resultScoreHidden').value || 'Не указано'}\nРекомендации: ${document.getElementById('resultDetailHidden').value || 'Не указано'}`,
+                current_date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }),
                 reply_to: emailInput.value
             };
 
-            // ⚠️ ЗАМЕНИТЕ SERVICE_ID И TEMPLATE_ID НА СВОИ
+            // ✅ ОТПРАВКА С ВАШИМИ ДАННЫМИ
             emailjs.send(
-                "YOUR_SERVICE_ID", // 👈 ID сервиса из EmailJS
-                "YOUR_TEMPLATE_ID", // 👈 ID шаблона из EmailJS
+                "service_m8o64v9",  // ✅ Ваш Service ID
+                "rn4d4ax",          // ✅ Ваш Template ID
                 templateParams
             ).then(
                 function(response) {
@@ -1432,9 +1434,9 @@
                     submitBtn.classList.remove('loading');
                     submitBtn.disabled = false;
                     successMessage.classList.add('show');
-                    contactForm.querySelector('.form-group').style.display = 'none';
-                    contactForm.querySelector('.submit-btn').style.display = 'none';
-                    contactForm.querySelector('.privacy').style.display = 'none';
+                    contactForm.querySelector('.form-group')?.remove();
+                    contactForm.querySelector('.submit-btn')?.remove();
+                    contactForm.querySelector('.privacy')?.remove();
                 },
                 function(error) {
                     console.error('❌ Ошибка отправки:', error);
@@ -1446,7 +1448,7 @@
         });
 
         // ============================================================
-        // 5. НАЧАЛЬНОЕ СОСТОЯНИЕ
+        // 6. НАЧАЛЬНОЕ СОСТОЯНИЕ
         // ============================================================
         testArea.style.display = 'none';
         resultArea.style.display = 'none';
