@@ -1159,12 +1159,12 @@
         // ============================================================
         (function initEmailJS() {
             emailjs.init({
-                publicKey: "N140cViz-muDO9seO", // ✅ Ваш Public Key
+                publicKey: "N140cViz-muDO9seO",
             });
         })();
 
         // ============================================================
-        // 4. ТЕСТ
+        // 4. ДАННЫЕ ТЕСТА (12 ВОПРОСОВ)
         // ============================================================
         const questions = [
             { id: 1, text: 'Как часто вы просыпаетесь в середине ночи или под утро?', options: [{ label: 'Ни разу', value: 0 }, { label: 'Менее 1 раза в неделю', value: 1 }, { label: '1–2 раза в неделю', value: 2 }, { label: '3 и более раз в неделю', value: 3 }] },
@@ -1181,6 +1181,9 @@
             { id: 12, text: 'Есть ли у вас что-то, что может влиять на сон, кроме указанного? (выберите один вариант)', options: [{ label: 'Нет, ничего особенного', value: 0 }, { label: 'Беременность', value: 0 }, { label: 'Хроническое заболевание (диабет, гипертония и др.)', value: 0 }, { label: 'Работа в ночные смены или частые перелёты', value: 0 }, { label: 'Другое', value: 0 }] }
         ];
 
+        // ============================================================
+        // 5. РЕЗУЛЬТАТЫ
+        // ============================================================
         const results = [{
             min: 0,
             max: 6,
@@ -1197,7 +1200,7 @@
             tag: 'Лёгкие нарушения',
             title: 'Есть над чем поработать',
             desc: 'У вас небольшие проблемы со сном.',
-            detail: ['За 2 часа до сна отложите телефон.', 'Ужинайте за 3 часа до сна.', 'Попробуйте технику «4-7-8».', 'Ведите дневник сна.'],
+            detail: ['За 2 часа до сна отложите телефон.', 'Ужинайте за 3 часа до сна.', 'Попробуйте технику «4-7-8».', 'Ведите дневник сна.', 'Исключите алкоголь за 4 часа до сна.'],
             from_lecture: '«Нарушения сна на ранней стадии корректируются поведением.»'
         }, {
             min: 15,
@@ -1219,9 +1222,11 @@
             from_lecture: '«Хроническая бессонница — это системный сбой.»'
         }];
 
+        // ============================================================
+        // 6. ЛОГИКА ТЕСТА
+        // ============================================================
         let currentStep = 0;
         let answers = [];
-        let testResult = null;
 
         const testArea = document.getElementById('testArea');
         const resultArea = document.getElementById('resultArea');
@@ -1234,13 +1239,20 @@
         const retestBtn = document.getElementById('retestBtn');
         const heroSection = document.getElementById('heroSection');
 
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const nameInput = document.getElementById('userName');
+        const emailInput = document.getElementById('userEmail');
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+
         function showTest() {
             heroSection.style.display = 'none';
             testArea.style.display = 'block';
             resultArea.style.display = 'none';
             currentStep = 0;
             answers = [];
-            testResult = null;
             renderQuestion(0);
         }
 
@@ -1300,7 +1312,6 @@
         function showResult() {
             const total = answers.reduce((sum, val) => sum + val, 0);
             const matched = results.find(r => total >= r.min && total <= r.max) || results[results.length - 1];
-            testResult = { total, matched };
 
             document.getElementById('resultEmoji').textContent = matched.emoji;
             document.getElementById('resultTag').textContent = matched.tag;
@@ -1314,7 +1325,6 @@
             detailHtml += `<div class="result-from-lecture"><strong>📖 Из моей авторской методики:</strong> ${matched.from_lecture}</div>`;
             document.getElementById('resultDetail').innerHTML = detailHtml;
 
-            // Заполняем скрытые поля формы результатами
             document.getElementById('resultScoreHidden').value = `${total} / 36`;
             document.getElementById('resultTagHidden').value = matched.tag;
             document.getElementById('resultDetailHidden').value = matched.detail.join('; ');
@@ -1327,7 +1337,6 @@
         retestBtn.addEventListener('click', () => {
             currentStep = 0;
             answers = [];
-            testResult = null;
             resultArea.style.display = 'none';
             testArea.style.display = 'none';
             heroSection.style.display = 'block';
@@ -1351,17 +1360,8 @@
         });
 
         // ============================================================
-        // 5. ОБРАБОТКА ФОРМЫ — ОТПРАВКА НА ПОЧТУ
+        // 7. ОТПРАВКА НА ПОЧТУ ЧЕРЕЗ EMAILJS (СО ВСЕМИ ОТВЕТАМИ)
         // ============================================================
-        const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const successMessage = document.getElementById('successMessage');
-        const nameInput = document.getElementById('userName');
-        const emailInput = document.getElementById('userEmail');
-        const nameError = document.getElementById('nameError');
-        const emailError = document.getElementById('emailError');
-
-        // Валидация в реальном времени
         nameInput.addEventListener('input', () => {
             if (nameInput.value.trim().length >= 2) {
                 nameInput.classList.remove('error');
@@ -1411,26 +1411,29 @@
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
 
+            // Формируем текст с ответами на все 12 вопросов
+            const answersText = questions.map((q, idx) => {
+                const answerIndex = answers[idx];
+                const answerText = q.options[answerIndex]?.label || 'Не выбран';
+                return `${idx+1}. ${q.text} → ${answerText}`;
+            }).join('\n');
+
             const templateParams = {
                 from_name: nameInput.value,
                 from_email: emailInput.value,
                 result_score: document.getElementById('resultScoreHidden').value || 'Не указано',
                 result_tag: document.getElementById('resultTagHidden').value || 'Не указано',
                 result_detail: document.getElementById('resultDetailHidden').value || 'Не указано',
-                message: `Результат теста: ${document.getElementById('resultTagHidden').value || 'Не указано'}\nБаллы: ${document.getElementById('resultScoreHidden').value || 'Не указано'}\nРекомендации: ${document.getElementById('resultDetailHidden').value || 'Не указано'}`,
-                current_date: new Date().toLocaleDateString('ru-RU', { 
-                    day: 'numeric', 
-                    month: 'long', 
-                    year: 'numeric' 
-                })
+                answers: answersText,
+                message: `Результат теста: ${document.getElementById('resultTagHidden').value || 'Не указано'}\nБаллы: ${document.getElementById('resultScoreHidden').value || 'Не указано'}\n\n📋 Ответы клиента:\n${answersText}`,
+                current_date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
             };
 
             console.log('📤 Отправляемые данные:', templateParams);
 
-            // ✅ ПРАВИЛЬНЫЙ TEMPLATE ID: template_o5adcfv
             emailjs.send(
-                "service_m8o64v9",      // Service ID
-                "template_o5adcfv",     // Template ID ✅
+                "service_m8o64v9",
+                "template_o5adcfv",
                 templateParams
             ).then(
                 function(response) {
@@ -1463,7 +1466,7 @@
         });
 
         // ============================================================
-        // 6. НАЧАЛЬНОЕ СОСТОЯНИЕ
+        // 8. НАЧАЛЬНОЕ СОСТОЯНИЕ
         // ============================================================
         testArea.style.display = 'none';
         resultArea.style.display = 'none';
