@@ -675,6 +675,65 @@
         }
 
         /* ============================================================
+           КНОПКИ ДЛЯ КОПИРОВАНИЯ
+        ============================================================ */
+        .copy-results-container {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .copy-results-container p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .copy-results-container .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .copy-results-container .btn-group .btn {
+            padding: 12px 28px;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .copy-results-container .btn-group .btn-email {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: none;
+            color: var(--text-secondary);
+        }
+
+        .copy-results-container .btn-group .btn-email:hover {
+            background: var(--bg-card);
+            border-color: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        #copyStatus {
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: none;
+        }
+
+        #copyStatus.success {
+            color: var(--success);
+        }
+
+        #copyStatus.error {
+            color: var(--danger);
+        }
+
+        /* ============================================================
            ОСТАЛЬНЫЕ СТИЛИ
         ============================================================ */
         .full-version-section {
@@ -897,6 +956,10 @@
             .contact-form-container h3 {
                 font-size: 19px;
             }
+            .copy-results-container .btn-group .btn {
+                width: 100%;
+                text-align: center;
+            }
         }
 
         @media (max-width: 400px) {
@@ -959,7 +1022,7 @@
                 <div class="result-detail" id="resultDetail"></div>
 
                 <!-- ============================================================
-                   КРАСИВАЯ ФОРМА СВЯЗИ (EmailJS)
+                   ФОРМА ДЛЯ ОТПРАВКИ
                 ============================================================ -->
                 <div class="contact-form-container">
                     <h3>📬 Получите полный разбор</h3>
@@ -988,7 +1051,6 @@
                             <div class="error-text" id="emailError">Пожалуйста, введите корректный email</div>
                         </div>
 
-                        <!-- Скрытые поля с результатами теста -->
                         <input type="hidden" id="resultScoreHidden" value="" />
                         <input type="hidden" id="resultTagHidden" value="" />
                         <input type="hidden" id="resultDetailHidden" value="" />
@@ -1006,6 +1068,23 @@
                             🔒 Ваши данные защищены и не передаются третьим лицам
                         </p>
                     </form>
+                </div>
+
+                <!-- ============================================================
+                   КНОПКИ ДЛЯ КОПИРОВАНИЯ (если форма не работает)
+                ============================================================ -->
+                <div class="copy-results-container">
+                    <p>🔄 Если форма не работает — скопируйте результаты и отправьте мне вручную:</p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline" id="copyResultsBtn">
+                            📋 Скопировать результаты
+                        </button>
+                        <a href="mailto:frolov.mixail.v@yandex.ru?subject=Результаты%20теста%20сна" 
+                           class="btn btn-outline btn-email">
+                            📧 Отправить на почту
+                        </a>
+                    </div>
+                    <div id="copyStatus"></div>
                 </div>
 
                 <div class="result-actions">
@@ -1106,7 +1185,7 @@
         </section>
 
         <div class="cta-bottom">
-            <p>💬 Остались вопросы? Напишите мне в <a href="https://max.ru/u/f9LHodD0cOJ-jlpDzCqhRtEDv5GYYEHd9aFKyjYtJ5XNyHD5Mhdd4J9HFVA" target="_blank">МАХ</a></p>
+            <p>💬 Остались вопросы? Напишите мне на <a href="mailto:frolov.mixail.v@yandex.ru">почту</a></p>
         </div>
 
         <div class="footer">
@@ -1360,7 +1439,51 @@
         });
 
         // ============================================================
-        // 7. ОТПРАВКА НА ПОЧТУ ЧЕРЕЗ EMAILJS (СО ВСЕМИ ОТВЕТАМИ)
+        // 7. ФУНКЦИЯ ДЛЯ ФОРМИРОВАНИЯ ТЕКСТА ОТВЕТОВ
+        // ============================================================
+        function getAnswersText() {
+            return questions.map((q, idx) => {
+                const answerIndex = answers[idx];
+                const answerText = q.options[answerIndex]?.label || 'Не выбран';
+                return `${idx+1}. ${q.text} → ${answerText}`;
+            }).join('\n');
+        }
+
+        function getFullResultText() {
+            const total = answers.reduce((sum, val) => sum + val, 0);
+            const matched = results.find(r => total >= r.min && total <= r.max) || results[results.length - 1];
+            const name = nameInput.value || 'Не указано';
+            const email = emailInput.value || 'Не указано';
+            const answersText = getAnswersText();
+
+            return `
+        📊 РЕЗУЛЬТАТЫ ТЕСТА СНА
+        
+        👤 Имя: ${name}
+        📧 Email: ${email}
+        
+        📈 Результат:
+        🏷️ Статус: ${matched.tag}
+        📊 Баллы: ${total} / 36
+        
+        📋 ПОДРОБНЫЕ ОТВЕТЫ:
+        ${answersText}
+        
+        📋 Рекомендации:
+        ${matched.detail.join('\n')}
+        
+        📖 Из методики:
+        ${matched.from_lecture}
+        
+        📅 Дата: ${new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
+        
+        ---
+        Отправлено через тест сна на сайте
+        `;
+        }
+
+        // ============================================================
+        // 8. ОТПРАВКА НА ПОЧТУ
         // ============================================================
         nameInput.addEventListener('input', () => {
             if (nameInput.value.trim().length >= 2) {
@@ -1382,6 +1505,63 @@
                 emailInput.classList.remove('success');
             }
         });
+
+        // Отправка через EmailJS
+        function sendViaEmailJS(name, email, answersText) {
+            return emailjs.send(
+                "service_m8o64v9",
+                "template_o5adcfv",
+                {
+                    from_name: name,
+                    from_email: email,
+                    result_score: document.getElementById('resultScoreHidden').value || 'Не указано',
+                    result_tag: document.getElementById('resultTagHidden').value || 'Не указано',
+                    result_detail: document.getElementById('resultDetailHidden').value || 'Не указано',
+                    answers: answersText,
+                    message: `Результат теста: ${document.getElementById('resultTagHidden').value || 'Не указано'}\nБаллы: ${document.getElementById('resultScoreHidden').value || 'Не указано'}\n\n📋 Ответы клиента:\n${answersText}`,
+                    current_date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+                }
+            );
+        }
+
+        // Запасной вариант через Formspree
+        function sendViaFormspree(name, email, answersText) {
+            const total = answers.reduce((sum, val) => sum + val, 0);
+            const matched = results.find(r => total >= r.min && total <= r.max) || results[results.length - 1];
+            
+            const message = `
+        📊 НОВЫЙ РЕЗУЛЬТАТ ТЕСТА СНА
+        
+        👤 Имя: ${name}
+        📧 Email: ${email}
+        
+        📈 Результат:
+        🏷️ Статус: ${matched.tag}
+        📊 Баллы: ${total} / 36
+        
+        📋 ПОДРОБНЫЕ ОТВЕТЫ:
+        ${answersText}
+        
+        📋 Рекомендации:
+        ${matched.detail.join('; ')}
+        
+        📅 Отправлено: ${new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
+            `;
+
+            return fetch('https://formspree.io/f/xqpzpodo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message,
+                    _subject: `Новый результат теста сна от ${name}`
+                })
+            });
+        }
 
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1411,62 +1591,125 @@
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
 
-            // Формируем текст с ответами на все 12 вопросов
-            const answersText = questions.map((q, idx) => {
-                const answerIndex = answers[idx];
-                const answerText = q.options[answerIndex]?.label || 'Не выбран';
-                return `${idx+1}. ${q.text} → ${answerText}`;
-            }).join('\n');
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const answersText = getAnswersText();
 
-            const templateParams = {
-                from_name: nameInput.value,
-                from_email: emailInput.value,
-                result_score: document.getElementById('resultScoreHidden').value || 'Не указано',
-                result_tag: document.getElementById('resultTagHidden').value || 'Не указано',
-                result_detail: document.getElementById('resultDetailHidden').value || 'Не указано',
-                answers: answersText,
-                message: `Результат теста: ${document.getElementById('resultTagHidden').value || 'Не указано'}\nБаллы: ${document.getElementById('resultScoreHidden').value || 'Не указано'}\n\n📋 Ответы клиента:\n${answersText}`,
-                current_date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
-            };
-
-            console.log('📤 Отправляемые данные:', templateParams);
-
-            emailjs.send(
-                "service_m8o64v9",
-                "template_o5adcfv",
-                templateParams
-            ).then(
-                function(response) {
-                    console.log('✅ Письмо отправлено!', response);
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                    successMessage.classList.add('show');
+            // Пробуем EmailJS
+            sendViaEmailJS(name, email, answersText)
+                .then(function(response) {
+                    console.log('✅ Письмо отправлено через EmailJS!', response);
+                    handleSuccess();
+                })
+                .catch(function(error) {
+                    console.warn('⚠️ EmailJS не сработал, пробуем Formspree...', error);
                     
-                    const formGroups = contactForm.querySelectorAll('.form-group');
-                    formGroups.forEach(el => el.style.display = 'none');
-                    contactForm.querySelector('.submit-btn').style.display = 'none';
-                    contactForm.querySelector('.privacy').style.display = 'none';
-                },
-                function(error) {
-                    console.error('❌ Ошибка отправки:', error);
-                    console.error('Текст ошибки:', error.text);
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                    
-                    let errorMessage = 'Произошла ошибка при отправке. ';
-                    if (error.text) {
-                        errorMessage += `\n\nТекст ошибки: ${error.text}`;
-                    }
-                    if (error.status) {
-                        errorMessage += `\nСтатус: ${error.status}`;
-                    }
-                    alert(errorMessage);
+                    sendViaFormspree(name, email, answersText)
+                        .then(function(response) {
+                            if (response.ok) {
+                                console.log('✅ Письмо отправлено через Formspree!');
+                                handleSuccess();
+                            } else {
+                                throw new Error('Formspree также не сработал');
+                            }
+                        })
+                        .catch(function(fallbackError) {
+                            console.error('❌ Все способы отправки не сработали:', fallbackError);
+                            handleError('Не удалось отправить данные. Попробуйте позже или скопируйте результаты вручную.');
+                        });
+                });
+
+            function handleSuccess() {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                successMessage.classList.add('show');
+                
+                const formGroups = contactForm.querySelectorAll('.form-group');
+                formGroups.forEach(el => el.style.display = 'none');
+                contactForm.querySelector('.submit-btn').style.display = 'none';
+                contactForm.querySelector('.privacy').style.display = 'none';
+            }
+
+            function handleError(message) {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                
+                const errorMsg = document.createElement('div');
+                errorMsg.style.cssText = `
+                    background: rgba(255, 107, 107, 0.12);
+                    border: 1px solid rgba(255, 107, 107, 0.2);
+                    border-radius: 14px;
+                    padding: 16px 20px;
+                    margin-top: 16px;
+                    color: #ff6b6b;
+                    font-size: 14px;
+                    text-align: center;
+                `;
+                errorMsg.innerHTML = `
+                    ❌ ${message}<br><br>
+                    <strong>Или отправьте мне на почту:</strong><br>
+                    📧 frolov.mixail.v@yandex.ru
+                `;
+                
+                const formContainer = contactForm.querySelector('.form-group')?.parentNode;
+                if (formContainer) {
+                    const existing = formContainer.querySelector('.fallback-error');
+                    if (existing) existing.remove();
+                    errorMsg.className = 'fallback-error';
+                    formContainer.appendChild(errorMsg);
                 }
-            );
+            }
         });
 
         // ============================================================
-        // 8. НАЧАЛЬНОЕ СОСТОЯНИЕ
+        // 9. КНОПКА "СКОПИРОВАТЬ РЕЗУЛЬТАТЫ"
+        // ============================================================
+        document.getElementById('copyResultsBtn')?.addEventListener('click', function() {
+            const resultText = getFullResultText();
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(resultText)
+                    .then(() => {
+                        showCopyStatus('✅ Результаты скопированы! Отправьте их мне на почту.', 'success');
+                    })
+                    .catch(() => {
+                        copyFallback(resultText);
+                    });
+            } else {
+                copyFallback(resultText);
+            }
+        });
+
+        function copyFallback(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showCopyStatus('✅ Результаты скопированы! Отправьте их мне на почту.', 'success');
+            } catch (err) {
+                showCopyStatus('❌ Не удалось скопировать. Выделите текст вручную.', 'error');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function showCopyStatus(message, type) {
+            const status = document.getElementById('copyStatus');
+            status.style.display = 'block';
+            status.textContent = message;
+            status.className = type;
+            setTimeout(() => {
+                status.style.display = 'none';
+                status.className = '';
+            }, 6000);
+        }
+
+        // ============================================================
+        // 10. НАЧАЛЬНОЕ СОСТОЯНИЕ
         // ============================================================
         testArea.style.display = 'none';
         resultArea.style.display = 'none';
