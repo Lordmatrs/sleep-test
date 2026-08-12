@@ -15,7 +15,7 @@
     
     <style>
         /* ============================================================
-           ВСЕ ВАШИ СТИЛИ (ОСТАВЬТЕ КАК ЕСТЬ)
+           БАЗОВЫЕ СТИЛИ
         ============================================================ */
         *,
         *::before,
@@ -1408,7 +1408,6 @@
 
             if (!isValid) return;
 
-            // Показываем загрузку
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
 
@@ -1428,10 +1427,10 @@
 
             console.log('📤 Отправляемые данные:', templateParams);
 
-            // ✅ ПРАВИЛЬНЫЙ Service ID: service_m8o64v9 (с буквой o)
+            // ✅ ПРАВИЛЬНЫЙ TEMPLATE ID: template_o5adcfv
             emailjs.send(
-                "service_m8o64v9",  // ✅ Service ID с буквой o
-                "rn4d4ax",          // ✅ Template ID
+                "service_m8o64v9",      // Service ID
+                "template_o5adcfv",     // Template ID ✅
                 templateParams
             ).then(
                 function(response) {
@@ -1440,7 +1439,6 @@
                     submitBtn.disabled = false;
                     successMessage.classList.add('show');
                     
-                    // Скрываем форму после успешной отправки
                     const formGroups = contactForm.querySelectorAll('.form-group');
                     formGroups.forEach(el => el.style.display = 'none');
                     contactForm.querySelector('.submit-btn').style.display = 'none';
@@ -1452,7 +1450,6 @@
                     submitBtn.classList.remove('loading');
                     submitBtn.disabled = false;
                     
-                    // Показываем конкретную ошибку
                     let errorMessage = 'Произошла ошибка при отправке. ';
                     if (error.text) {
                         errorMessage += `\n\nТекст ошибки: ${error.text}`;
