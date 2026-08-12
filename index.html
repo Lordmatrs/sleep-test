@@ -8,8 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,600;1,700&display=swap" rel="stylesheet" />
+    
+    <!-- Подключаем EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
     <style>
-        /* ... все ваши стили остаются без изменений ... */
         *,
         *::before,
         *::after {
@@ -32,6 +35,8 @@
             --shadow-card: 0 16px 48px rgba(0, 0, 0, 0.6);
             --radius: 28px;
             --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            --danger: #ff6b6b;
+            --success: #51cf66;
         }
 
         html {
@@ -212,6 +217,12 @@
 
         .btn:active {
             transform: scale(0.97);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
         }
 
         .btn-outline {
@@ -505,23 +516,163 @@
             color: #fff;
         }
 
-        /* Стили для формы */
-        .yandex-form-container {
-            margin-top: 24px;
-            padding-top: 24px;
+        /* ============================================================
+           КРАСИВАЯ ФОРМА
+        ============================================================ */
+        .contact-form-container {
+            margin-top: 28px;
+            padding-top: 28px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
-            text-align: center;
         }
 
-        .yandex-form-container iframe {
+        .contact-form-container h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .contact-form-container .subtitle {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .contact-form {
+            max-width: 440px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 18px;
+        }
+
+        .contact-form label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .contact-form input {
             width: 100%;
-            max-width: 480px;
-            height: 380px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.03);
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            font-size: 16px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            outline: none;
         }
 
+        .contact-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .contact-form input:focus {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .contact-form input.error {
+            border-color: var(--danger);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.2);
+        }
+
+        .contact-form input.success {
+            border-color: var(--success);
+            box-shadow: 0 0 20px rgba(81, 207, 102, 0.2);
+        }
+
+        .contact-form .error-text {
+            font-size: 13px;
+            color: var(--danger);
+            margin-top: 6px;
+            display: none;
+        }
+
+        .contact-form .error-text.show {
+            display: block;
+        }
+
+        .contact-form .submit-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 17px;
+            margin-top: 6px;
+        }
+
+        .contact-form .submit-btn .spinner {
+            display: none;
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255,255,255,0.2);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .contact-form .submit-btn.loading .btn-text {
+            display: none;
+        }
+
+        .contact-form .submit-btn.loading .spinner {
+            display: block;
+        }
+
+        .contact-form .submit-btn.loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-form .success-message {
+            display: none;
+            background: rgba(81, 207, 102, 0.12);
+            border: 1px solid rgba(81, 207, 102, 0.2);
+            border-radius: 14px;
+            padding: 16px 20px;
+            text-align: center;
+            margin-top: 16px;
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        .contact-form .success-message.show {
+            display: block;
+            animation: fadeSlide 0.4s ease;
+        }
+
+        .contact-form .privacy {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 14px;
+        }
+
+        .contact-form .privacy a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        .contact-form .privacy a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================================
+           ОСТАЛЬНЫЕ СТИЛИ (без изменений)
+        ============================================================ */
         .full-version-section {
             margin-top: 40px;
             padding: 32px 28px;
@@ -732,13 +883,15 @@
             .result-actions { flex-direction: column; }
             .result-actions .btn { width: 100%; }
             .review-block p { font-size: 14px; }
-            .yandex-form-container iframe { height: 400px; }
             .full-version-section .features {
                 grid-template-columns: 1fr;
                 gap: 6px;
             }
             .full-version-section .features span {
                 font-size: 13px;
+            }
+            .contact-form-container h3 {
+                font-size: 19px;
             }
         }
 
@@ -802,32 +955,53 @@
                 <div class="result-detail" id="resultDetail"></div>
 
                 <!-- ============================================================
-                ⚠️ ВАЖНО: ЗДЕСЬ НУЖНО НАСТРОИТЬ ФОРМУ
+                   КРАСИВАЯ ФОРМА СВЯЗИ
                 ============================================================ -->
-                <div class="yandex-form-container">
-                    <p style="font-size:15px; color:var(--text-secondary); margin-bottom:12px;">
-                        📬 Оставьте имя и email, чтобы я мог связаться с вами:
-                    </p>
-                    <!-- 
-                        ⚠️ ИНСТРУКЦИЯ ПО НАСТРОЙКЕ ФОРМЫ:
-                        
-                        1. Перейдите на сайт Яндекс.Формы: https://forms.yandex.ru
-                        2. Создайте новую форму
-                        3. Добавьте поля: "Имя" (текстовое) и "Email" (текстовое)
-                        4. В настройках формы включите "Уведомления на email"
-                        5. Укажите ваш email для получения ответов
-                        6. Опубликуйте форму и скопируйте ссылку
-                        7. Замените ID формы в iframe ниже:
-                           https://forms.yandex.ru/u/ВАШ_ID_ФОРМЫ/?iframe=1
-                    -->
-                    <iframe
-                        src="https://forms.yandex.ru/u/6a7c6c0a1f1eb52e730dea8b/?iframe=1"
-                        frameborder="0"
-                        allowfullscreen
-                    ></iframe>
-                    <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">
-                        🔒 Ваши данные защищены и не передаются третьим лицам
-                    </p>
+                <div class="contact-form-container">
+                    <h3>📬 Получите полный разбор</h3>
+                    <p class="subtitle">Оставьте имя и email — я пришлю вам персональные рекомендации</p>
+
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="userName">Ваше имя</label>
+                            <input 
+                                type="text" 
+                                id="userName" 
+                                placeholder="Например: Елена"
+                                required
+                            />
+                            <div class="error-text" id="nameError">Пожалуйста, введите ваше имя</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="userEmail">Email</label>
+                            <input 
+                                type="email" 
+                                id="userEmail" 
+                                placeholder="example@mail.ru"
+                                required
+                            />
+                            <div class="error-text" id="emailError">Пожалуйста, введите корректный email</div>
+                        </div>
+
+                        <!-- Скрытые поля с результатами теста -->
+                        <input type="hidden" id="resultScoreHidden" value="" />
+                        <input type="hidden" id="resultTagHidden" value="" />
+                        <input type="hidden" id="resultDetailHidden" value="" />
+
+                        <button type="submit" class="btn submit-btn" id="submitBtn">
+                            <span class="btn-text">🚀 Отправить</span>
+                            <span class="spinner"></span>
+                        </button>
+
+                        <div class="success-message" id="successMessage">
+                            ✅ Спасибо! Ваши данные получены. Я свяжусь с вами в ближайшее время.
+                        </div>
+
+                        <p class="privacy">
+                            🔒 Ваши данные защищены и не передаются третьим лицам
+                        </p>
+                    </form>
                 </div>
 
                 <div class="result-actions">
@@ -960,7 +1134,7 @@
         })();
 
         // ============================================================
-        // 2. БЛОГ — РАСКРЫТИЕ СТАТЕЙ
+        // 2. БЛОГ
         // ============================================================
         function toggleBlog(card) {
             const fullText = card.querySelector('.full-text');
@@ -977,7 +1151,7 @@
         }
 
         // ============================================================
-        // 3. ДАННЫЕ ТЕСТА (12 ВОПРОСОВ)
+        // 3. ТЕСТ
         // ============================================================
         const questions = [
             { id: 1, text: 'Как часто вы просыпаетесь в середине ночи или под утро?', options: [{ label: 'Ни разу', value: 0 }, { label: 'Менее 1 раза в неделю', value: 1 }, { label: '1–2 раза в неделю', value: 2 }, { label: '3 и более раз в неделю', value: 3 }] },
@@ -994,9 +1168,6 @@
             { id: 12, text: 'Есть ли у вас что-то, что может влиять на сон, кроме указанного? (выберите один вариант)', options: [{ label: 'Нет, ничего особенного', value: 0 }, { label: 'Беременность', value: 0 }, { label: 'Хроническое заболевание (диабет, гипертония и др.)', value: 0 }, { label: 'Работа в ночные смены или частые перелёты', value: 0 }, { label: 'Другое', value: 0 }] }
         ];
 
-        // ============================================================
-        // 4. РЕЗУЛЬТАТЫ
-        // ============================================================
         const results = [{
             min: 0,
             max: 6,
@@ -1035,11 +1206,9 @@
             from_lecture: '«Хроническая бессонница — это системный сбой.»'
         }];
 
-        // ============================================================
-        // 5. ЛОГИКА ТЕСТА
-        // ============================================================
         let currentStep = 0;
         let answers = [];
+        let testResult = null;
 
         const testArea = document.getElementById('testArea');
         const resultArea = document.getElementById('resultArea');
@@ -1052,15 +1221,13 @@
         const retestBtn = document.getElementById('retestBtn');
         const heroSection = document.getElementById('heroSection');
 
-        // ============================================================
-        // 6. ПОКАЗАТЬ ТЕСТ
-        // ============================================================
         function showTest() {
             heroSection.style.display = 'none';
             testArea.style.display = 'block';
             resultArea.style.display = 'none';
             currentStep = 0;
             answers = [];
+            testResult = null;
             renderQuestion(0);
         }
 
@@ -1090,9 +1257,6 @@
             questionContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // ============================================================
-        // 7. НАВИГАЦИЯ
-        // ============================================================
         startBtn.addEventListener('click', showTest);
 
         nextBtn.addEventListener('click', () => {
@@ -1120,12 +1284,10 @@
             }
         });
 
-        // ============================================================
-        // 8. ПОКАЗАТЬ РЕЗУЛЬТАТ
-        // ============================================================
         function showResult() {
             const total = answers.reduce((sum, val) => sum + val, 0);
-            let matched = results.find(r => total >= r.min && total <= r.max) || results[results.length - 1];
+            const matched = results.find(r => total >= r.min && total <= r.max) || results[results.length - 1];
+            testResult = { total, matched };
 
             document.getElementById('resultEmoji').textContent = matched.emoji;
             document.getElementById('resultTag').textContent = matched.tag;
@@ -1139,26 +1301,26 @@
             detailHtml += `<div class="result-from-lecture"><strong>📖 Из моей авторской методики:</strong> ${matched.from_lecture}</div>`;
             document.getElementById('resultDetail').innerHTML = detailHtml;
 
+            // Заполняем скрытые поля формы результатами
+            document.getElementById('resultScoreHidden').value = `${total} / 36`;
+            document.getElementById('resultTagHidden').value = matched.tag;
+            document.getElementById('resultDetailHidden').value = matched.detail.join('; ');
+
             testArea.style.display = 'none';
             resultArea.style.display = 'block';
             resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
-        // ============================================================
-        // 9. ПРОЙТИ ЗАНОВО
-        // ============================================================
         retestBtn.addEventListener('click', () => {
             currentStep = 0;
             answers = [];
+            testResult = null;
             resultArea.style.display = 'none';
             testArea.style.display = 'none';
             heroSection.style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // ============================================================
-        // 10. КЛАВИША ENTER
-        // ============================================================
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && testArea.style.display === 'block') {
                 const q = questions[currentStep];
@@ -1175,6 +1337,117 @@
             }
         });
 
+        // ============================================================
+        // 4. EMAILJS — ОТПРАВКА ФОРМЫ НА ПОЧТУ
+        // ============================================================
+        // Инициализация EmailJS
+        (function initEmailJS() {
+            // ⚠️ ЗАМЕНИТЕ ЭТИ ЗНАЧЕНИЯ НА СВОИ (получить на emailjs.com)
+            // БЕСПЛАТНО до 200 писем в месяц
+            emailjs.init({
+                publicKey: "YOUR_PUBLIC_KEY", // 👈 Получить в кабинете EmailJS
+            });
+        })();
+
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const nameInput = document.getElementById('userName');
+        const emailInput = document.getElementById('userEmail');
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+
+        // Валидация полей в реальном времени
+        nameInput.addEventListener('input', () => {
+            if (nameInput.value.trim().length >= 2) {
+                nameInput.classList.remove('error');
+                nameInput.classList.add('success');
+                nameError.classList.remove('show');
+            } else {
+                nameInput.classList.remove('success');
+            }
+        });
+
+        emailInput.addEventListener('input', () => {
+            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
+            if (isValid) {
+                emailInput.classList.remove('error');
+                emailInput.classList.add('success');
+                emailError.classList.remove('show');
+            } else {
+                emailInput.classList.remove('success');
+            }
+        });
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Валидация
+            let isValid = true;
+
+            if (nameInput.value.trim().length < 2) {
+                nameInput.classList.add('error');
+                nameError.classList.add('show');
+                isValid = false;
+            } else {
+                nameInput.classList.remove('error');
+                nameError.classList.remove('show');
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+                emailInput.classList.add('error');
+                emailError.classList.add('show');
+                isValid = false;
+            } else {
+                emailInput.classList.remove('error');
+                emailError.classList.remove('show');
+            }
+
+            if (!isValid) return;
+
+            // Показываем загрузку
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+
+            // ⚠️ ЗАМЕНИТЕ ЭТИ ЗНАЧЕНИЯ НА СВОИ
+            const templateParams = {
+                to_name: "Михаил Фролов", // Ваше имя
+                from_name: nameInput.value,
+                from_email: emailInput.value,
+                result_score: document.getElementById('resultScoreHidden').value || 'Не указано',
+                result_tag: document.getElementById('resultTagHidden').value || 'Не указано',
+                result_detail: document.getElementById('resultDetailHidden').value || 'Не указано',
+                message: `Результат теста: ${document.getElementById('resultTagHidden').value || 'Не указано'}\nБаллы: ${document.getElementById('resultScoreHidden').value || 'Не указано'}\nРекомендации: ${document.getElementById('resultDetailHidden').value || 'Не указано'}`,
+                reply_to: emailInput.value
+            };
+
+            // ⚠️ ЗАМЕНИТЕ SERVICE_ID И TEMPLATE_ID НА СВОИ
+            emailjs.send(
+                "YOUR_SERVICE_ID", // 👈 ID сервиса из EmailJS
+                "YOUR_TEMPLATE_ID", // 👈 ID шаблона из EmailJS
+                templateParams
+            ).then(
+                function(response) {
+                    console.log('✅ Письмо отправлено!', response);
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    successMessage.classList.add('show');
+                    contactForm.querySelector('.form-group').style.display = 'none';
+                    contactForm.querySelector('.submit-btn').style.display = 'none';
+                    contactForm.querySelector('.privacy').style.display = 'none';
+                },
+                function(error) {
+                    console.error('❌ Ошибка отправки:', error);
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    alert('Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз или свяжитесь со мной напрямую.');
+                }
+            );
+        });
+
+        // ============================================================
+        // 5. НАЧАЛЬНОЕ СОСТОЯНИЕ
+        // ============================================================
         testArea.style.display = 'none';
         resultArea.style.display = 'none';
         heroSection.style.display = 'block';
