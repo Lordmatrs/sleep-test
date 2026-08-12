@@ -15,7 +15,7 @@
     
     <style>
         /* ============================================================
-           БАЗОВЫЕ СТИЛИ
+           ВСЕ ВАШИ СТИЛИ (ОСТАВЬТЕ КАК ЕСТЬ)
         ============================================================ */
         *,
         *::before,
@@ -1155,9 +1155,8 @@
         }
 
         // ============================================================
-        // 3. EMAILJS — ОТПРАВКА ФОРМЫ НА ПОЧТУ
+        // 3. EMAILJS — ИНИЦИАЛИЗАЦИЯ
         // ============================================================
-        // Инициализация EmailJS с вашим Public Key
         (function initEmailJS() {
             emailjs.init({
                 publicKey: "N140cViz-muDO9seO", // ✅ Ваш Public Key
@@ -1352,7 +1351,7 @@
         });
 
         // ============================================================
-        // 5. ОБРАБОТКА ФОРМЫ С ОТПРАВКОЙ НА ПОЧТУ
+        // 5. ОБРАБОТКА ФОРМЫ — ОТПРАВКА НА ПОЧТУ
         // ============================================================
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
@@ -1409,6 +1408,7 @@
 
             if (!isValid) return;
 
+            // Показываем загрузку
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
 
@@ -1419,14 +1419,19 @@
                 result_tag: document.getElementById('resultTagHidden').value || 'Не указано',
                 result_detail: document.getElementById('resultDetailHidden').value || 'Не указано',
                 message: `Результат теста: ${document.getElementById('resultTagHidden').value || 'Не указано'}\nБаллы: ${document.getElementById('resultScoreHidden').value || 'Не указано'}\nРекомендации: ${document.getElementById('resultDetailHidden').value || 'Не указано'}`,
-                current_date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }),
-                reply_to: emailInput.value
+                current_date: new Date().toLocaleDateString('ru-RU', { 
+                    day: 'numeric', 
+                    month: 'long', 
+                    year: 'numeric' 
+                })
             };
 
-            // ✅ ОТПРАВКА С ВАШИМИ ДАННЫМИ
+            console.log('📤 Отправляемые данные:', templateParams);
+
+            // ✅ ПРАВИЛЬНЫЙ Service ID: service_m8o64v9 (с буквой o)
             emailjs.send(
-                "service_m8o64v9",  // ✅ Ваш Service ID
-                "rn4d4ax",          // ✅ Ваш Template ID
+                "service_m8o64v9",  // ✅ Service ID с буквой o
+                "rn4d4ax",          // ✅ Template ID
                 templateParams
             ).then(
                 function(response) {
@@ -1434,15 +1439,28 @@
                     submitBtn.classList.remove('loading');
                     submitBtn.disabled = false;
                     successMessage.classList.add('show');
-                    contactForm.querySelector('.form-group')?.remove();
-                    contactForm.querySelector('.submit-btn')?.remove();
-                    contactForm.querySelector('.privacy')?.remove();
+                    
+                    // Скрываем форму после успешной отправки
+                    const formGroups = contactForm.querySelectorAll('.form-group');
+                    formGroups.forEach(el => el.style.display = 'none');
+                    contactForm.querySelector('.submit-btn').style.display = 'none';
+                    contactForm.querySelector('.privacy').style.display = 'none';
                 },
                 function(error) {
                     console.error('❌ Ошибка отправки:', error);
+                    console.error('Текст ошибки:', error.text);
                     submitBtn.classList.remove('loading');
                     submitBtn.disabled = false;
-                    alert('Произошла ошибка при отправке. Пожалуйста, попробуйте ещё раз или свяжитесь со мной напрямую.');
+                    
+                    // Показываем конкретную ошибку
+                    let errorMessage = 'Произошла ошибка при отправке. ';
+                    if (error.text) {
+                        errorMessage += `\n\nТекст ошибки: ${error.text}`;
+                    }
+                    if (error.status) {
+                        errorMessage += `\nСтатус: ${error.status}`;
+                    }
+                    alert(errorMessage);
                 }
             );
         });
