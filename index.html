@@ -9,7 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,600;1,700&display=swap" rel="stylesheet" />
     <style>
-        /* --- БАЗОВЫЕ СТИЛИ --- */
+        /* ============================================================
+           БАЗОВЫЕ СТИЛИ
+        ============================================================ */
         *,
         *::before,
         *::after {
@@ -17,6 +19,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         :root {
             --bg-primary: #0b0f1a;
             --bg-card: rgba(255, 255, 255, 0.04);
@@ -32,9 +35,11 @@
             --radius: 28px;
             --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
+
         html {
             scroll-behavior: smooth;
         }
+
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
@@ -44,6 +49,7 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+
         .stars {
             position: fixed;
             top: 0;
@@ -54,6 +60,7 @@
             z-index: 0;
             overflow: hidden;
         }
+
         .star {
             position: absolute;
             width: 3px;
@@ -63,16 +70,12 @@
             animation: twinkle var(--duration) ease-in-out infinite alternate;
             opacity: 0.3;
         }
+
         @keyframes twinkle {
-            0% {
-                opacity: 0.15;
-                transform: scale(0.8);
-            }
-            100% {
-                opacity: 0.9;
-                transform: scale(1.2);
-            }
+            0% { opacity: 0.15; transform: scale(0.8); }
+            100% { opacity: 0.9; transform: scale(1.2); }
         }
+
         .container {
             max-width: 820px;
             margin: 0 auto;
@@ -80,6 +83,7 @@
             position: relative;
             z-index: 1;
         }
+
         .header {
             display: flex;
             align-items: center;
@@ -94,6 +98,7 @@
             box-shadow: var(--shadow-card);
             flex-wrap: wrap;
         }
+
         .avatar {
             width: 64px;
             height: 64px;
@@ -102,14 +107,17 @@
             flex-shrink: 0;
             box-shadow: 0 0 30px var(--accent-glow);
         }
+
         .avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
         .header-info {
             flex: 1;
         }
+
         .header-info h1 {
             font-family: 'Playfair Display', serif;
             font-size: 22px;
@@ -119,11 +127,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .header-info p {
             font-size: 14px;
             color: var(--text-secondary);
             margin-top: 2px;
         }
+
         .badge {
             background: var(--accent);
             padding: 6px 18px;
@@ -136,25 +146,24 @@
             box-shadow: 0 0 24px var(--accent-glow);
             white-space: nowrap;
         }
+
         .hero {
             text-align: center;
             padding: 30px 20px 20px;
         }
+
         .hero-icon {
             font-size: 58px;
             margin-bottom: 12px;
             display: block;
             animation: float 4s ease-in-out infinite;
         }
+
         @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
+
         .hero h2 {
             font-family: 'Playfair Display', serif;
             font-size: 38px;
@@ -165,6 +174,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .hero p {
             font-size: 18px;
             color: var(--text-secondary);
@@ -172,12 +182,14 @@
             margin: 16px auto 28px;
             line-height: 1.7;
         }
+
         .hero .sub {
             font-size: 14px;
             color: var(--text-muted);
             margin-top: -8px;
             margin-bottom: 24px;
         }
+
         .btn {
             display: inline-block;
             background: linear-gradient(135deg, var(--accent), #5a4bd1);
@@ -193,20 +205,24 @@
             letter-spacing: 0.3px;
             font-family: 'Inter', sans-serif;
         }
+
         .btn:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 12px 48px var(--accent-glow);
             background: linear-gradient(135deg, #8f82f5, #6a5bdc);
         }
+
         .btn:active {
             transform: scale(0.97);
         }
+
         .btn-outline {
             background: transparent;
             border: 2px solid rgba(255, 255, 255, 0.15);
             box-shadow: none;
             color: var(--text-secondary);
         }
+
         .btn-outline:hover {
             background: var(--bg-card);
             border-color: var(--accent);
@@ -214,10 +230,12 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 24px var(--accent-glow);
         }
+
         #testArea {
             display: none;
             margin-top: 30px;
         }
+
         .progress-wrap {
             background: rgba(255, 255, 255, 0.06);
             height: 6px;
@@ -225,6 +243,7 @@
             margin-bottom: 6px;
             overflow: hidden;
         }
+
         .progress-bar {
             height: 100%;
             width: 0%;
@@ -233,6 +252,7 @@
             transition: width 0.5s ease;
             box-shadow: 0 0 20px var(--accent-glow);
         }
+
         .step-counter {
             text-align: right;
             font-size: 14px;
@@ -241,6 +261,7 @@
             font-weight: 400;
             letter-spacing: 0.3px;
         }
+
         .question-block {
             background: var(--bg-card);
             backdrop-filter: blur(12px);
@@ -252,16 +273,12 @@
             transition: var(--transition);
             animation: fadeSlide 0.4s ease;
         }
+
         @keyframes fadeSlide {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
+
         .question-text {
             font-size: 22px;
             font-weight: 600;
@@ -269,11 +286,13 @@
             line-height: 1.4;
             color: #fff;
         }
+
         .options {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
+
         .options label {
             display: flex;
             align-items: center;
@@ -287,11 +306,13 @@
             font-size: 16px;
             color: var(--text-secondary);
         }
+
         .options label:hover {
             background: var(--bg-card-hover);
             border-color: var(--accent);
             color: #fff;
         }
+
         .options input[type="radio"] {
             appearance: none;
             width: 20px;
@@ -303,11 +324,13 @@
             transition: var(--transition);
             cursor: pointer;
         }
+
         .options input[type="radio"]:checked {
             border-color: var(--accent);
             background: var(--accent);
             box-shadow: 0 0 20px var(--accent-glow);
         }
+
         .options input[type="radio"]:checked::after {
             content: '';
             position: absolute;
@@ -319,10 +342,12 @@
             background: #fff;
             border-radius: 50%;
         }
+
         .options label:has(input:checked) {
             border-color: var(--accent);
             background: rgba(124, 109, 240, 0.12);
         }
+
         .test-actions {
             display: flex;
             justify-content: space-between;
@@ -331,17 +356,20 @@
             gap: 16px;
             flex-wrap: wrap;
         }
+
         .test-actions .btn {
             padding: 14px 40px;
             font-size: 16px;
             min-width: 140px;
         }
+
         .btn-prev {
             background: transparent;
             border: 1.5px solid rgba(255, 255, 255, 0.1);
             box-shadow: none;
             color: var(--text-muted);
         }
+
         .btn-prev:hover {
             border-color: var(--text-secondary);
             color: #fff;
@@ -349,10 +377,12 @@
             transform: none;
             box-shadow: none;
         }
+
         #resultArea {
             display: none;
             margin-top: 30px;
         }
+
         .result-box {
             background: var(--bg-card);
             backdrop-filter: blur(12px);
@@ -364,11 +394,13 @@
             animation: fadeSlide 0.6s ease;
             text-align: center;
         }
+
         .result-emoji {
             font-size: 64px;
             display: block;
             margin-bottom: 8px;
         }
+
         .result-tag {
             display: inline-block;
             background: var(--accent);
@@ -381,12 +413,14 @@
             margin-bottom: 16px;
             box-shadow: 0 0 24px var(--accent-glow);
         }
+
         .result-title {
             font-family: 'Playfair Display', serif;
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 12px;
         }
+
         .result-desc {
             font-size: 18px;
             color: var(--text-secondary);
@@ -394,6 +428,7 @@
             max-width: 640px;
             margin: 0 auto 16px;
         }
+
         .result-score {
             font-size: 48px;
             font-weight: 700;
@@ -401,11 +436,13 @@
             margin: 8px 0 20px;
             letter-spacing: -1px;
         }
+
         .result-score span {
             font-size: 20px;
             font-weight: 400;
             color: var(--text-muted);
         }
+
         .result-actions {
             display: flex;
             flex-wrap: wrap;
@@ -413,26 +450,31 @@
             justify-content: center;
             margin-top: 20px;
         }
+
         .result-actions .btn {
             padding: 14px 36px;
             font-size: 15px;
         }
+
         .result-detail {
             margin-top: 24px;
             padding-top: 24px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
+
         .result-detail h4 {
             font-size: 18px;
             margin-bottom: 10px;
             color: #fff;
         }
+
         .result-detail ul {
             list-style: none;
             text-align: left;
             max-width: 520px;
             margin: 0 auto;
         }
+
         .result-detail ul li {
             padding: 6px 0;
             padding-left: 28px;
@@ -441,12 +483,14 @@
             color: var(--text-secondary);
             line-height: 1.6;
         }
+
         .result-detail ul li::before {
             content: '▸';
             position: absolute;
             left: 4px;
             color: var(--accent-light);
         }
+
         .result-from-lecture {
             margin-top: 20px;
             padding: 16px 20px;
@@ -458,81 +502,33 @@
             line-height: 1.7;
             text-align: left;
         }
+
         .result-from-lecture strong {
             color: #fff;
         }
 
         /* ============================================================
-           ФОРМА ДЛЯ ИМЕНИ И EMAIL (отправка в Яндекс.Формы)
+           ФОРМА ЯНДЕКСА (IFRAME)
         ============================================================ */
-        .email-form {
+        .yandex-form-container {
             margin-top: 24px;
             padding-top: 24px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
-            text-align: left;
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .email-form label {
-            display: block;
-            font-size: 15px;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
             text-align: center;
-        }
-        .email-form input {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 16px;
-            border: 1.5px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            font-size: 16px;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-            outline: none;
-            margin-bottom: 12px;
-        }
-        .email-form input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-        .email-form input::placeholder {
-            color: var(--text-muted);
-        }
-        .email-form .btn-send {
-            margin-top: 4px;
-            width: 100%;
-            display: inline-block;
-            background: linear-gradient(135deg, #00c9a7, #00b894);
-            color: #fff;
-            border: none;
-            padding: 16px 40px;
-            border-radius: 60px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 8px 32px rgba(0, 201, 167, 0.35);
-            font-family: 'Inter', sans-serif;
-        }
-        .email-form .btn-send:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 12px 48px rgba(0, 201, 167, 0.45);
-        }
-        .email-form .btn-send:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-        .email-form .form-note {
-            text-align: center;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 10px;
         }
 
+        .yandex-form-container iframe {
+            width: 100%;
+            max-width: 480px;
+            height: 320px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* ============================================================
+           БЛОК "ЧТО ВЫ ПОЛУЧИТЕ"
+        ============================================================ */
         .full-version-section {
             margin-top: 40px;
             padding: 32px 28px;
@@ -544,6 +540,7 @@
             text-align: center;
             box-shadow: var(--shadow-card);
         }
+
         .full-version-section .features {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -552,6 +549,7 @@
             max-width: 540px;
             margin: 0 auto 24px;
         }
+
         .full-version-section .features span {
             font-size: 14px;
             color: var(--text-secondary);
@@ -559,11 +557,13 @@
             align-items: center;
             gap: 8px;
         }
+
         .full-version-section .features span::before {
             content: '✦';
             color: var(--accent-light);
             font-size: 12px;
         }
+
         @media (max-width: 640px) {
             .full-version-section {
                 padding: 24px 18px;
@@ -577,6 +577,10 @@
                 font-size: 13px;
             }
         }
+
+        /* ============================================================
+           ОТЗЫВ, РАЗДЕЛИТЕЛЬ, КНОПКИ
+        ============================================================ */
         .review-block {
             margin-top: 30px;
             padding: 20px;
@@ -585,60 +589,75 @@
             border-left: 3px solid var(--accent);
             text-align: center;
         }
+
         .review-block p {
             font-size: 16px;
             color: var(--text-secondary);
             font-style: italic;
             line-height: 1.7;
         }
+
         .review-block .author {
             font-size: 14px;
             color: var(--text-muted);
             margin-top: 6px;
             font-style: normal;
         }
+
         .divider {
             height: 2px;
             background: linear-gradient(to right, transparent, var(--accent), transparent);
             margin: 40px 0;
         }
+
         .cta-bottom {
             text-align: center;
             margin-top: 30px;
         }
+
         .cta-bottom p {
             font-size: 16px;
             color: var(--text-secondary);
         }
+
         .cta-bottom a {
             color: var(--accent-light);
             text-decoration: none;
             font-weight: 600;
         }
+
         .cta-bottom a:hover {
             text-decoration: underline;
         }
+
+        /* ============================================================
+           БЛОГ
+        ============================================================ */
         .blog-section {
             margin-top: 40px;
             padding-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
+
         .blog-section h3 {
             font-family: 'Playfair Display', serif;
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 6px;
         }
+
         .blog-section .subhead {
             color: var(--text-muted);
             font-size: 15px;
             margin-bottom: 28px;
         }
+
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
+
         .blog-card {
             background: var(--bg-card);
             backdrop-filter: blur(8px);
@@ -649,22 +668,26 @@
             transition: var(--transition);
             cursor: pointer;
         }
+
         .blog-card:hover {
             background: var(--bg-card-hover);
             transform: translateY(-4px);
             border-color: rgba(255, 255, 255, 0.08);
         }
+
         .blog-card h4 {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 6px;
             color: #fff;
         }
+
         .blog-card .preview {
             font-size: 14px;
             color: var(--text-secondary);
             line-height: 1.6;
         }
+
         .blog-card .full-text {
             display: none;
             margin-top: 16px;
@@ -674,12 +697,15 @@
             color: var(--text-secondary);
             line-height: 1.8;
         }
+
         .blog-card .full-text p {
             margin-bottom: 10px;
         }
+
         .blog-card .full-text.show {
             display: block;
         }
+
         .blog-card .read-more {
             display: inline-block;
             margin-top: 12px;
@@ -687,6 +713,7 @@
             font-size: 14px;
             font-weight: 600;
         }
+
         .blog-card .date {
             display: block;
             margin-top: 12px;
@@ -694,6 +721,7 @@
             color: var(--text-muted);
             letter-spacing: 0.3px;
         }
+
         .footer {
             margin-top: 50px;
             text-align: center;
@@ -702,100 +730,45 @@
             border-top: 1px solid rgba(255, 255, 255, 0.04);
             padding-top: 30px;
         }
+
         .footer .diploma {
             font-size: 12px;
             color: var(--text-muted);
             margin-top: 4px;
             opacity: 0.7;
         }
+
         @media (max-width: 640px) {
-            .container {
-                padding: 16px 14px 40px;
-            }
-            .header {
-                padding: 16px 18px;
-                gap: 14px;
-            }
-            .avatar {
-                width: 50px;
-                height: 50px;
-            }
-            .header-info h1 {
-                font-size: 17px;
-            }
-            .header-info p {
-                font-size: 12px;
-            }
-            .badge {
-                font-size: 10px;
-                padding: 4px 14px;
-            }
-            .hero h2 {
-                font-size: 28px;
-            }
-            .hero p {
-                font-size: 16px;
-            }
-            .question-block {
-                padding: 24px 18px;
-            }
-            .question-text {
-                font-size: 18px;
-            }
-            .options label {
-                padding: 14px 16px;
-                font-size: 14px;
-            }
-            .test-actions .btn {
-                padding: 12px 24px;
-                font-size: 14px;
-                min-width: 100px;
-            }
-            .result-box {
-                padding: 28px 18px;
-            }
-            .result-title {
-                font-size: 26px;
-            }
-            .result-desc {
-                font-size: 16px;
-            }
-            .result-score {
-                font-size: 38px;
-            }
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-            .result-actions {
-                flex-direction: column;
-            }
-            .result-actions .btn {
-                width: 100%;
-            }
-            .review-block p {
-                font-size: 14px;
-            }
+            .container { padding: 16px 14px 40px; }
+            .header { padding: 16px 18px; gap: 14px; }
+            .avatar { width: 50px; height: 50px; }
+            .header-info h1 { font-size: 17px; }
+            .header-info p { font-size: 12px; }
+            .badge { font-size: 10px; padding: 4px 14px; }
+            .hero h2 { font-size: 28px; }
+            .hero p { font-size: 16px; }
+            .question-block { padding: 24px 18px; }
+            .question-text { font-size: 18px; }
+            .options label { padding: 14px 16px; font-size: 14px; }
+            .test-actions .btn { padding: 12px 24px; font-size: 14px; min-width: 100px; }
+            .result-box { padding: 28px 18px; }
+            .result-title { font-size: 26px; }
+            .result-desc { font-size: 16px; }
+            .result-score { font-size: 38px; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .result-actions { flex-direction: column; }
+            .result-actions .btn { width: 100%; }
+            .review-block p { font-size: 14px; }
+            .yandex-form-container iframe { height: 380px; }
         }
+
         @media (max-width: 400px) {
-            .hero h2 {
-                font-size: 22px;
-            }
-            .header-info h1 {
-                font-size: 15px;
-            }
-            .question-text {
-                font-size: 16px;
-            }
-            .options label {
-                font-size: 13px;
-                padding: 12px 14px;
-            }
-            .test-actions {
-                flex-direction: column;
-            }
-            .test-actions .btn {
-                width: 100%;
-            }
+            .hero h2 { font-size: 22px; }
+            .header-info h1 { font-size: 15px; }
+            .question-text { font-size: 16px; }
+            .options label { font-size: 13px; padding: 12px 14px; }
+            .test-actions { flex-direction: column; }
+            .test-actions .btn { width: 100%; }
         }
     </style>
 </head>
@@ -805,6 +778,9 @@
 
     <div class="container">
 
+        <!-- ============================================================
+        ХЕДЕР
+        ============================================================ -->
         <header class="header">
             <div class="avatar">
                 <img src="logo.png.png" alt="Логотип" />
@@ -816,6 +792,9 @@
             <span class="badge">🌙 Эксперт</span>
         </header>
 
+        <!-- ============================================================
+        ГЕРОЙ
+        ============================================================ -->
         <section class="hero" id="heroSection">
             <span class="hero-icon">🌙</span>
             <h2>Тест вашего сна</h2>
@@ -827,6 +806,9 @@
             <button class="btn" id="startTestBtn">✨ Начать тест</button>
         </section>
 
+        <!-- ============================================================
+        ТЕСТ
+        ============================================================ -->
         <section id="testArea">
             <div class="progress-wrap">
                 <div class="progress-bar" id="progressBar"></div>
@@ -839,6 +821,9 @@
             </div>
         </section>
 
+        <!-- ============================================================
+        РЕЗУЛЬТАТ
+        ============================================================ -->
         <section id="resultArea">
             <div class="result-box">
                 <span class="result-emoji" id="resultEmoji">💚</span>
@@ -848,12 +833,18 @@
                 <div class="result-desc" id="resultDesc">Текст рекомендации появится здесь.</div>
                 <div class="result-detail" id="resultDetail"></div>
 
-                <div class="email-form" id="emailForm">
-                    <label for="userName">📬 Оставьте имя и email, чтобы я мог связаться с вами:</label>
-                    <input type="text" id="userName" placeholder="Ваше имя" />
-                    <input type="email" id="userEmail" placeholder="Ваш email" />
-                    <button class="btn-send" id="sendResultBtn">📤 Отправить результат</button>
-                    <div class="form-note" id="formNote">Ваши ответы отправлены. Я свяжусь с вами в ближайшее время.</div>
+                <!-- ============================================================
+                ФОРМА ЯНДЕКСА (ВСТРОЕННАЯ)
+                ============================================================ -->
+                <div class="yandex-form-container">
+                    <p style="font-size:15px; color:var(--text-secondary); margin-bottom:12px;">
+                        📬 Оставьте имя и email, чтобы я мог связаться с вами:
+                    </p>
+                    <iframe
+                        src="https://forms.yandex.ru/u/6a7c6c0a1f1eb52e730dea8b/?iframe=1"
+                        frameborder="0"
+                        allowfullscreen
+                    ></iframe>
                 </div>
 
                 <div class="result-actions">
@@ -862,6 +853,9 @@
             </div>
         </section>
 
+        <!-- ============================================================
+        ЧТО ВЫ ПОЛУЧИТЕ
+        ============================================================ -->
         <section class="full-version-section" id="fullVersionSection" style="text-align:center;">
             <p style="font-size:clamp(20px, 5vw, 28px); font-weight:700; color:#ffffff; margin:12px auto 10px; line-height:1.3; max-width:90%; word-wrap:break-word; text-align:center;">
                 Что вы получите
@@ -879,6 +873,9 @@
             </div>
         </section>
 
+        <!-- ============================================================
+        ОТЗЫВ
+        ============================================================ -->
         <div class="review-block">
             <p>«Очень понравилось! После теста получила разбор, который реально помог. Спасибо, Михаил!»</p>
             <div class="author">— Елена, 34 года</div>
@@ -886,6 +883,9 @@
 
         <div class="divider"></div>
 
+        <!-- ============================================================
+        БЛОГ
+        ============================================================ -->
         <section class="blog-section">
             <h3>📖 Блог сомнолога</h3>
             <p class="subhead">Статьи из моей авторской методики</p>
@@ -953,10 +953,16 @@
             </div>
         </section>
 
+        <!-- ============================================================
+        ПРИЗЫВ ВНИЗУ
+        ============================================================ -->
         <div class="cta-bottom">
             <p>💬 Остались вопросы? Напишите мне в <a href="https://max.ru/u/f9LHodD0cOJ-jlpDzCqhRtEDv5GYYEHd9aFKyjYtJ5XNyHD5Mhdd4J9HFVA" target="_blank">МАХ</a></p>
         </div>
 
+        <!-- ============================================================
+        ФУТЕР
+        ============================================================ -->
         <div class="footer">
             <p>© 2026 Михаил Фролов · Сомнолог-консультант</p>
             <div class="diploma">Диплом № 2026/04/011</div>
@@ -964,6 +970,9 @@
 
     </div>
 
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
     <script>
         // ============================================================
         // 1. ЗВЁЗДНЫЙ ФОН
@@ -1078,96 +1087,17 @@
         const retestBtn = document.getElementById('retestBtn');
         const heroSection = document.getElementById('heroSection');
 
-        const sendResultBtn = document.getElementById('sendResultBtn');
-        const userNameInput = document.getElementById('userName');
-        const userEmailInput = document.getElementById('userEmail');
-        const formNote = document.getElementById('formNote');
-
         // ============================================================
-        // 6. ОТПРАВКА В ЯНДЕКС.ФОРМЫ
+        // 6. ПОКАЗАТЬ ТЕСТ
         // ============================================================
-        const YANDEX_FORM_URL = 'https://forms.yandex.ru/u/6a7c6c0a1f1eb52e730dea8b';
-
-        async function sendResultsToYandex() {
-            const name = userNameInput.value.trim();
-            const email = userEmailInput.value.trim();
-
-            if (!name) {
-                formNote.textContent = '❌ Пожалуйста, введите ваше имя.';
-                formNote.style.color = '#ff6b6b';
-                userNameInput.style.borderColor = '#ff6b6b';
-                setTimeout(() => { userNameInput.style.borderColor = ''; }, 3000);
-                return;
-            }
-            if (!email) {
-                formNote.textContent = '❌ Пожалуйста, введите ваш email.';
-                formNote.style.color = '#ff6b6b';
-                userEmailInput.style.borderColor = '#ff6b6b';
-                setTimeout(() => { userEmailInput.style.borderColor = ''; }, 3000);
-                return;
-            }
-            if (!email.includes('@')) {
-                formNote.textContent = '❌ Введите корректный email (например, name@mail.ru)';
-                formNote.style.color = '#ff6b6b';
-                userEmailInput.style.borderColor = '#ff6b6b';
-                setTimeout(() => { userEmailInput.style.borderColor = ''; }, 3000);
-                return;
-            }
-
-            const total = answers.reduce((sum, val) => sum + val, 0);
-            const matched = results.find(r => total >= r.min && total <= r.max) || results[results.length - 1];
-            const answersText = questions.map((q, idx) => {
-                const answerIndex = answers[idx];
-                const answerText = q.options[answerIndex]?.label || 'Не выбран';
-                return `${idx+1}. ${q.text} → ${answerText}`;
-            }).join('\n');
-
-            const formData = new FormData();
-            formData.append('Ваше имя', name);
-            formData.append('Ваш email', email);
-            formData.append('Баллы', `${total} / 36`);
-            formData.append('Рекомендация', matched.title + ': ' + matched.desc);
-            formData.append('Ответы', answersText);
-
-            sendResultBtn.disabled = true;
-            sendResultBtn.textContent = '⏳ Отправка...';
-            formNote.textContent = '⏳ Отправляю данные...';
-            formNote.style.color = 'var(--text-muted)';
-
-            try {
-                const response = await fetch(YANDEX_FORM_URL, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.ok) {
-                    formNote.textContent = '✅ Результат успешно отправлен! Я свяжусь с вами в ближайшее время.';
-                    formNote.style.color = '#00c9a7';
-                    sendResultBtn.textContent = '✅ Отправлено';
-                    sendResultBtn.disabled = true;
-                } else {
-                    throw new Error('Ошибка отправки');
-                }
-            } catch (error) {
-                formNote.textContent = '❌ Не удалось отправить. Попробуйте ещё раз.';
-                formNote.style.color = '#ff6b6b';
-                sendResultBtn.textContent = '📤 Попробовать снова';
-                sendResultBtn.disabled = false;
-                console.error('Ошибка отправки:', error);
-            }
-        }
-
-        // ============================================================
-        // 7. СОБЫТИЯ
-        // ============================================================
-        startBtn.addEventListener('click', () => {
+        function showTest() {
             heroSection.style.display = 'none';
             testArea.style.display = 'block';
             resultArea.style.display = 'none';
             currentStep = 0;
             answers = [];
             renderQuestion(0);
-        });
+        }
 
         function renderQuestion(index) {
             const q = questions[index];
@@ -1195,6 +1125,11 @@
             questionContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        // ============================================================
+        // 7. НАВИГАЦИЯ
+        // ============================================================
+        startBtn.addEventListener('click', showTest);
+
         nextBtn.addEventListener('click', () => {
             const q = questions[currentStep];
             const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
@@ -1205,14 +1140,24 @@
                 return;
             }
             answers[currentStep] = parseInt(selected.value);
-            if (currentStep === questions.length - 1) showResult();
-            else { currentStep++;
-                renderQuestion(currentStep); }
+            if (currentStep === questions.length - 1) {
+                showResult();
+            } else {
+                currentStep++;
+                renderQuestion(currentStep);
+            }
         });
 
-        prevBtn.addEventListener('click', () => { if (currentStep > 0) { currentStep--;
-                renderQuestion(currentStep); } });
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                renderQuestion(currentStep);
+            }
+        });
 
+        // ============================================================
+        // 8. ПОКАЗАТЬ РЕЗУЛЬТАТ
+        // ============================================================
         function showResult() {
             const total = answers.reduce((sum, val) => sum + val, 0);
             let matched = results.find(r => total >= r.min && total <= r.max) || results[results.length - 1];
@@ -1234,6 +1179,9 @@
             resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
+        // ============================================================
+        // 9. ПРОЙТИ ЗАНОВО
+        // ============================================================
         retestBtn.addEventListener('click', () => {
             currentStep = 0;
             answers = [];
@@ -1241,27 +1189,23 @@
             testArea.style.display = 'none';
             heroSection.style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            sendResultBtn.disabled = false;
-            sendResultBtn.textContent = '📤 Отправить результат';
-            formNote.textContent = 'Ваши ответы отправлены. Я свяжусь с вами в ближайшее время.';
-            formNote.style.color = 'var(--text-muted)';
-            userNameInput.value = '';
-            userEmailInput.value = '';
-            userNameInput.style.borderColor = '';
-            userEmailInput.style.borderColor = '';
         });
 
-        sendResultBtn.addEventListener('click', sendResultsToYandex);
-
+        // ============================================================
+        // 10. КЛАВИША ENTER
+        // ============================================================
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && testArea.style.display === 'block') {
                 const q = questions[currentStep];
                 const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
                 if (selected) {
                     answers[currentStep] = parseInt(selected.value);
-                    if (currentStep === questions.length - 1) showResult();
-                    else { currentStep++;
-                        renderQuestion(currentStep); }
+                    if (currentStep === questions.length - 1) {
+                        showResult();
+                    } else {
+                        currentStep++;
+                        renderQuestion(currentStep);
+                    }
                 }
             }
         });
